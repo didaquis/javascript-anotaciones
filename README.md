@@ -198,7 +198,7 @@ console.log(results); // "LauraJavier"
 * Uso de: _string.match_ (crea un array a partir de comparar un string con una regular expression)
 ```javascript
 var str = "The rain in SPAIN stays mainly in the plain"; 
-var res = str.match(/ain/gi); // ain,AIN,ain,ain
+var res = str.match(/ain/gi); // ["ain","AIN","ain","ain"]
 
 
 var text = "The phone number is 93 555 22 33";
