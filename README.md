@@ -8,6 +8,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Funciones y argumentos](#funciones-y-argumentos)
 - [Tratamiento de arrays](#tratamiento-de-arrays)
 - [Tratamiento de strings](#tratamiento-de-strings)
+- [Objetos](#objetos)
 - [Debugging y console](#debugging-y-console)
 
 
@@ -255,6 +256,52 @@ console.log( "hello".split("") ); // ["h", "e", "l", "l", "o"]
 var text = "Add the potato please, I always prefer more potato";
 text = text.split("potato").join("cheese");
 // Sustituye "potato" por "cheese" en todas las apariciones que haya en "text"
+```
+
+----------------------------------------------------------
+## Objetos:
+
+* Contexto de _this_:
+```javascript
+var biz = {
+	nombre: "Pedro",
+
+	// error, "this" apunta al objecto global:
+	saludar: 'Hola, soy ' + this.nombre,
+
+	// correcto, "this" apunta a "biz":
+	presentarse: function(){
+		return 'Mi nombre es ' + this.nombre;
+	}
+}
+
+console.log(biz.saludar); // 'Hola, soy undefined'
+console.log(biz.presentarse()); // 'Mi nombre es Pedro'
+```
+
+* Obtener un array a partir de las propiedades de un objeto:
+```javascript
+var foo = {
+	nombre: "Juan",
+	apellido: "Ruiz"
+}
+
+var arrayOfProperties = Object.keys(foo);
+console.log(arrayOfProperties); // ['nombre', 'apellido']
+```
+
+* Crear un array a partir de un objeto:
+```javascript
+var biz = {
+	length: 2,
+	'0': 'biz',
+	'1': 'foo'
+}
+
+var arrayFromObject = Array.prototype.slice.call(biz);
+console.log(arrayFromObject); // ['biz', 'foo']
+console.log(arrayFromObject.length); // 2
+console.log(arrayFromObject[1]); // 'foo'
 ```
 
 ----------------------------------------------------------
