@@ -206,6 +206,15 @@ arrayOfObjects.forEach(
 console.log(results); // "LauraJavier"
 ```
 
+* Uso de: _array.reduce_ (aplica una función a un acumulador y a cada valor de un array (de izquierda a derecha) para reducirlo a un único valor.)
+```javascript
+cart = [ {ref: "yuh", price: 23}, {ref: "jum", price: 44} ];
+var result = cart.reduce(function(accum, v){
+	return accum + v.price;
+},0); // en este caso, el 0 es el acumulador.
+console.log(result); // 67
+```
+
 ----------------------------------------------------------
 ## Tratamiento de strings:  
 
