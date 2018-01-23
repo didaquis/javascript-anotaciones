@@ -69,6 +69,20 @@ valorPorDefectoEnUnArgumento("foo"); // "foo"
 valorPorDefectoEnUnArgumento(); // "valor por defecto"
 ```
 
+* Self Invoking Functions:
+```javascript
+var hello;
+(function (){
+
+	hello = function(){
+		return "Hi boy!";
+	};
+
+})();
+
+console.log( hello() ); // "Hi boy!"
+```
+
 ----------------------------------------------------------
 ## Tratamiento de arrays:
 
