@@ -227,6 +227,14 @@ var result = cart.reduce(function(accum, v){
 	return accum + v.price;
 },0); // en este caso, el 0 es el acumulador.
 console.log(result); // 67
+
+
+var arrayOfBooleans = [true, false, true, true];
+var totalOfTrues = arrayOfBooleans.reduce( function(accumulator, arrayElement){
+            return arrayElement ? ++accumulator : accumulator;
+        },0
+    );
+console.log(totalOfTrues); // 3
 ```
 
 ----------------------------------------------------------
