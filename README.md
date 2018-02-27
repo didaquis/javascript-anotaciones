@@ -111,6 +111,13 @@ function recursiveArrayClone(arrayToClone){
 }
 ```
 
+* Vaciar un array
+```javascript
+var myArray = ['a', 'b', 'c'];
+myArray.length = 0;
+console.log(myArray); // []
+```
+
 * Uso de: _array.join_ (retorna un string)
 ```javascript
 var a = ['Wind', 'Rain', 'Fire'];
