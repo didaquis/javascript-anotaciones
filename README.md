@@ -213,7 +213,7 @@ var doubleNums = nums.map(
 var a = ['a', 'b', 'c'];
 
 a.forEach(function(element) {
-    console.log(element);
+	console.log(element);
 });
 
 
@@ -238,9 +238,9 @@ console.log(result); // 67
 
 var arrayOfBooleans = [true, false, true, true];
 var totalOfTrues = arrayOfBooleans.reduce( function(accumulator, arrayElement){
-            return arrayElement ? ++accumulator : accumulator;
-        },0
-    );
+			return arrayElement ? ++accumulator : accumulator;
+		},0
+	);
 console.log(totalOfTrues); // 3
 ```
 
@@ -340,6 +340,23 @@ var arrayFromObject = Array.prototype.slice.call(biz);
 console.log(arrayFromObject); // ['biz', 'foo']
 console.log(arrayFromObject.length); // 2
 console.log(arrayFromObject[1]); // 'foo'
+```
+
+* Clonar un objeto:
+```javascript
+function deepClone(originalObject) {
+	const clonedObject = {};
+	for (var key in originalObject) {
+		if (typeof (originalObject[key]) != "object") {
+			clonedObject[key] = originalObject[key];
+		} else {
+			clonedObject[key] = deepClone(originalObject[key]);
+		}
+	}
+	return clonedObject;
+}
+
+const newObject = deepClone(originalObject);
 ```
 
 ----------------------------------------------------------
