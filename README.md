@@ -282,7 +282,7 @@ console.log(text.substring(1,5)); // "xamp"
 // (a partir del índice dado, retorna caracteres hasta el otro índice dado)
 ```
 
-* Uso de: _string.split_ (genera un array mediante trocear un string por el parámetro indicado)
+* Uso de: _string.split_ (genera un nuevo array a partir de trocear un string por el parámetro indicado)
 ```javascript
 var array_of_words = "A new car".split(" ");
 console.log(array_of_words); // ["A", "new", "car"]
