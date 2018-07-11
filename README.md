@@ -9,6 +9,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Tratamiento de arrays](#tratamiento-de-arrays)
 - [Tratamiento de strings](#tratamiento-de-strings)
 - [Objetos](#objetos)
+- [Set](#set)
 - [Debugging y console](#debugging-y-console)
 
 
@@ -320,8 +321,8 @@ console.log(biz.presentarse()); // 'Mi nombre es Pedro'
 * Obtener un array a partir de las propiedades de un objeto:
 ```javascript
 var foo = {
-	nombre: "Juan",
-	apellido: "Ruiz"
+	nombre: 'Juan',
+	apellido: 'Ruiz'
 }
 
 var arrayOfProperties = Object.keys(foo);
@@ -347,7 +348,7 @@ console.log(arrayFromObject[1]); // 'foo'
 function deepClone(originalObject) {
 	const clonedObject = {};
 	for (var key in originalObject) {
-		if (typeof (originalObject[key]) != "object") {
+		if (typeof (originalObject[key]) != 'object') {
 			clonedObject[key] = originalObject[key];
 		} else {
 			clonedObject[key] = deepClone(originalObject[key]);
@@ -357,6 +358,24 @@ function deepClone(originalObject) {
 }
 
 const newObject = deepClone(originalObject);
+```
+
+----------------------------------------------------------
+## Set: 
+
+* Descomponer strings usando _set_ (recuerda que no permite valores duplicados):
+```javascript
+let foooooooooo = new Set('foooooooooo');
+console.log(foooooooooo); // Set(2) {"f", "o"}
+```
+
+* Eliminar elementos duplicados en un array mediante _set_ y _spread_ operator:
+```javascript
+let nums = [1, 2, 2, 2, 2, 3, 4];
+function deleteDuplicated(items) {
+	return [ ... new Set(items) ];
+}
+console.log( deleteDuplicated(nums) ); // [1, 2, 3, 4]
 ```
 
 ----------------------------------------------------------
