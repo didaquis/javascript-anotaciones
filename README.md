@@ -375,6 +375,12 @@ var person = { firstName:"John", lastName:"Doe", age:50 };
 console.table(person);
 ```
 
+* Destructuring en el _console.log_
+```javascript
+let person = { firstName:"John", lastName:"Doe", age:34 };
+console.log( { person } );
+```
+
 * Uso de _console.group()_ / _console.groupEnd()_ en bucles:
 ```javascript
 for(var i = 0; i < 2; i++){
