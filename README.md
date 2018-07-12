@@ -428,6 +428,8 @@ biz.forEach( (value, key, originalMap) => {
 	}
 });
 console.log(biz); // {"name" => "John", "Surname" => "Doe"}
+
+biz.set('name', 'Maria'); // {"name" => "Maria", "Surname" => "Doe"}
 ```
 
 ----------------------------------------------------------
