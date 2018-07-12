@@ -28,7 +28,7 @@ var a = 1, b = 2;
 
 * Operador lógico _OR_ (evalua de izquierda a derecha las expresiones y retorna la primera de ellas evaluable como "truthy". Si todas se evaluan como "falsy", retorna _false_. Todos los valores son "truthy", excepto: _false_, _0_, _""_, _null_, _undefined_, y _NaN_)
 ```javascript
-var foo = false || false; // false
+var foo = false || ':-)'; // ':-)'
 
 
 var bar = 3 || false; // 3
@@ -37,11 +37,18 @@ var bar = 3 || false; // 3
 var foobar = null || 0 || undefined || "NyanCat"; // "NyanCat"
 ```
 
-* Operador ternario: _?:_
+* Operador ternario: _?_:
 ```javascript
 var now = new Date();  
 var greeting = "Good" + ((now.getHours() > 17) ? " evening." : " day.");
 console.log(greeting);
+```
+
+* Operador _spread_:
+```javascript
+let foo = ['foo 1', ' foo 2'];
+let bar = ['bar 1', 'bar 2', ...foo, 'bar 3'];
+console.log(bar); // ["bar 1", "bar 2", "foo 1", " foo 2", "bar 3"]
 ```
 
 ----------------------------------------------------------
