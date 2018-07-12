@@ -10,6 +10,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Tratamiento de strings](#tratamiento-de-strings)
 - [Objetos](#objetos)
 - [Set](#set)
+- [Map](#map)
 - [Debugging y console](#debugging-y-console)
 
 
@@ -383,6 +384,50 @@ function deleteDuplicated(items) {
 	return [ ... new Set(items) ];
 }
 console.log( deleteDuplicated(nums) ); // [1, 2, 3, 4]
+```
+
+----------------------------------------------------------
+## Map: 
+
+* Primeros pasos con _map_:
+```javascript
+const biz = new Map();
+biz.set('name', 'John');
+biz.set('age', 53);
+
+console.log(biz.size); // 2
+
+for (let [key, value] of biz) {
+  console.log(`${key} => ${value}`);
+  // name => John
+  // age => 53
+}
+
+console.log(biz.get('age')); // 53
+
+biz.delete('age'); // true
+console.log(biz); // {"name" => "John"}
+
+biz.clear(); // {}
+```
+
+* Más opciones interesantes con _map_:
+```javascript
+const biz = new Map( [ ['name','John'], ['Surname', 'Doe'], [undefined, null] ] );
+
+console.log(biz.has('name')); // true
+console.log(biz.has('Give me a cookie')); // false
+
+console.log(biz); // {"name" => "John", "Surname" => "Doe", undefined => null}
+
+const arrayOfKeys = Array.from(biz.keys()); // ["name", "Surname", undefined]
+
+biz.forEach( (value, key, originalMap) => {
+	if(value === null) {
+		originalMap.delete(key);
+	}
+});
+console.log(biz); // {"name" => "John", "Surname" => "Doe"}
 ```
 
 ----------------------------------------------------------
