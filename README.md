@@ -52,6 +52,26 @@ let bar = ['bar 1', 'bar 2', ...foo, 'bar 3'];
 console.log(bar); // ["bar 1", "bar 2", "foo 1", " foo 2", "bar 3"]
 ```
 
+* Doble uso del operador _!_ (not):
+```javascript
+// La doble negación retorna un booleano dependiendo de la "truthiness" de la expressión. Retornará false cuando el valor sea: null, undefined, 0, etc... Si no es ninguno de estos casos, entonces devolverá true. Tiene sentido usarlo para evaluar expressiones que no son booleanas.
+let foo;
+if (!!foo) { // 'Result is false' Dado que el valor de foo es null.
+	console.log('Result is true');
+} else {
+	console.log('Result is false');
+}
+
+// Los siguientes ejemplos se evaluan como ciertos:
+!!0 // false
+!!1 // true
+!!"" // false (string vacío es falsy)
+!!window.biz // false (undefined es falsy)
+!!null // false (null is falsy)
+!!{} // true (an empty object is truthy)
+!![] // true (an empty array is truthy. PHP programmers beware!)
+```
+
 ----------------------------------------------------------
 ## Funciones y argumentos:  
 
