@@ -375,7 +375,7 @@ console.log(arrayFromObject[1]); // 'foo'
 ```javascript
 function deepClone(originalObject) {
 	const clonedObject = {};
-	for (var key in originalObject) {
+	for (let key in originalObject) {
 		if (typeof (originalObject[key]) != 'object') {
 			clonedObject[key] = originalObject[key];
 		} else {
