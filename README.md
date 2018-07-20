@@ -85,13 +85,13 @@ function codeScript(){
 codeScript(3712,7123);
 ```
 
-* Establecer un valor por defecto a los argumentos de una función (si no pasamos un parámetro, JavaScript lo interpreta como "undefined"):
+* Establecer un valor por defecto a los argumentos de una función (ES5). Si no pasamos un parámetro, JavaScript lo interpreta como "undefined":
 ```javascript
-function valorPorDefectoEnUnArgumento(arg){
-	// siempre que "arg" sea "undefined", "arg" será igual a "valor por defecto"
-	var arg = arg || "valor por defecto";
+function valorPorDefectoEnUnArgumento(txt){
+	// siempre que "txt" sea "undefined", "txt" será igual a "valor por defecto"
+	txt = txt || "valor por defecto";
 	
-	console.log(arg);
+	console.log(txt);
 }
 
 valorPorDefectoEnUnArgumento("foo"); // "foo"
