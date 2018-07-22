@@ -6,6 +6,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Declaración de variables](#declaracion-de-variables)
 - [Operadores](#operadores)
 - [Funciones y argumentos](#funciones-y-argumentos)
+- [Clases en ES5](#clases-en-es5)
 - [Tratamiento de arrays](#tratamiento-de-arrays)
 - [Tratamiento de strings](#tratamiento-de-strings)
 - [Objetos](#objetos)
@@ -110,6 +111,24 @@ var hello;
 })();
 
 console.log( hello() ); // "Hi boy!"
+```
+
+----------------------------------------------------------
+## Clases en ES5
+* Ejemplo de clase en ES5:
+```javascript
+function Person(name) {
+	this.name = name;
+
+	this.salute = function() {
+		console.log("Hello, my name is " + this.name);
+	}
+}
+
+var john_doe = new Person("John Doe"); // Observa que estoy usando "new" !!
+john_doe.salute(); // Hello, my name is John Doe
+console.log(john_doe instanceof Person); // true
+console.log(john_doe instanceof Object); // true
 ```
 
 ----------------------------------------------------------
