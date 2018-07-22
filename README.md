@@ -7,6 +7,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Operadores](#operadores)
 - [Funciones y argumentos](#funciones-y-argumentos)
 - [Clases en ES5](#clases-en-es5)
+- [Clases en ES6](#clases-en-es6)
 - [Tratamiento de arrays](#tratamiento-de-arrays)
 - [Tratamiento de strings](#tratamiento-de-strings)
 - [Objetos](#objetos)
@@ -127,8 +128,37 @@ function Person(name) {
 
 var john_doe = new Person("John Doe"); // Observa que estoy usando "new" !!
 john_doe.salute(); // Hello, my name is John Doe
+
 console.log(john_doe instanceof Person); // true
 console.log(john_doe instanceof Object); // true
+```
+
+----------------------------------------------------------
+## Clases en ES6
+* Ejemplo de clase en ES6:
+```javascript
+class Person {
+	constructor(name) {
+		// constructor es un método opcional. Si tu clase no tiene propiedades, puedes omitirlo.
+		this.name = name;
+	}
+
+	salute() {
+		console.log(`Hello, my name is ${this.name}`);
+	}
+}
+
+let john_doe = new Person("John Doe");
+
+john_doe.salute(); // Hello, my name is John Doe
+
+console.log(john_doe instanceof Person); // true
+console.log(john_doe instanceof Object); // true
+
+console.log( typeof john_doe); // object
+
+console.log( typeof Person); // function !! (Cuidado, podríamos pensar que no retornará "class" pero nos retorna "function")
+console.log( typeof Person.prototype.salute); // function !! (Cuidado, podríamos pensar que no retornará "method" pero nos retorna "function")
 ```
 
 ----------------------------------------------------------
