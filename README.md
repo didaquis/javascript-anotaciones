@@ -177,6 +177,48 @@ let num = Utilities.generateRandomInteger(); // Llamamos directamente al método
 console.log(num); // 2
 ```
 
+* Herencia:
+```javascript
+class Rectangle {
+	constructor(len, wid) {
+		this.len = len;
+		this.wid = wid;
+	}
+
+	getArea() {
+		return this.len * this.wid;
+	}
+
+	getInfo () {
+		return 'I am a naughty rectangle!';
+	}
+}
+
+class Square extends Rectangle { // extendemos la clase
+	constructor(len) {
+		super(len, len); // Invocamos al constructor de la clase padre
+	}
+
+	// Podría hacer referencia al método del padre, pero no es necesario ya que el método es heredado automáticamente.
+	// getArea() {
+	// 	return super.getArea(); // Fíjate que así invoco a un determinado método del padre.
+	// }
+
+	// Sobreescribir un método
+	getInfo () {
+		return 'I am a cheeky square!';
+	}
+}
+
+let square = new Square(4);
+console.log(square.getArea()); // 16. Observa que este método ha sido hererado de la clase padre
+
+console.log(square instanceof Square); // true
+console.log(square instanceof Rectangle); // true. Recuerda que Square extiende la clase Rectangle
+
+console.log(square.getInfo()); // I am a cheeky square!
+```
+
 ----------------------------------------------------------
 ## Tratamiento de arrays:
 
