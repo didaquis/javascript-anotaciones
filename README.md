@@ -116,6 +116,7 @@ console.log( hello() ); // "Hi boy!"
 
 ----------------------------------------------------------
 ## Clases en ES5
+
 * Ejemplo de clase en ES5:
 ```javascript
 function Person(name) {
@@ -135,6 +136,7 @@ console.log(john_doe instanceof Object); // true
 
 ----------------------------------------------------------
 ## Clases en ES6
+
 * Ejemplo de clase en ES6:
 ```javascript
 class Person {
@@ -159,6 +161,24 @@ console.log( typeof john_doe); // object
 
 console.log( typeof Person); // function !! (Cuidado, podríamos pensar que no retornará "class" pero nos retorna "function")
 console.log( typeof Person.prototype.salute); // function !! (Cuidado, podríamos pensar que no retornará "method" pero nos retorna "function")
+```
+
+* Métodos estáticos en las clases de ES6:
+```javascript
+class Point {
+	constructor(int) {
+		this.value = int;
+	}
+
+	static generateRandomPoint() {
+		// Esto es un método estático. Permite ser llamado sin necesidad de instanciar la clase.
+		let int = Math.floor(Math.random() * 11); // random integer from 0 to 10
+		return new Point(int);
+	}
+}
+
+let position = Point.generateRandomPoint(); // Llamamos al método estático
+console.log(position); // {value: 2}
 ```
 
 ----------------------------------------------------------
