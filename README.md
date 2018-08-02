@@ -163,22 +163,18 @@ console.log( typeof Person); // function !! (Cuidado, podríamos pensar que no r
 console.log( typeof Person.prototype.salute); // function !! (Cuidado, podríamos pensar que no retornará "method" pero nos retorna "function")
 ```
 
-* Métodos estáticos en las clases de ES6:
+* Métodos estáticos:
 ```javascript
-class Point {
-	constructor(int) {
-		this.value = int;
-	}
-
-	static generateRandomPoint() {
-		// Esto es un método estático. Permite ser llamado sin necesidad de instanciar la clase.
-		let int = Math.floor(Math.random() * 11); // random integer from 0 to 10
-		return new Point(int);
+class Utilities {
+	static generateRandomInteger() {
+		// Esto es un método estático. 
+		// Permite ser llamado sin necesidad de instanciar la clase.
+		return Math.floor(Math.random() * 11); // retorna un numero entero aleatorio entre 0 y 10
 	}
 }
 
-let position = Point.generateRandomPoint(); // Llamamos al método estático
-console.log(position); // {value: 2}
+let num = Utilities.generateRandomInteger(); // Llamamos directamente al método estático
+console.log(num); // 2
 ```
 
 ----------------------------------------------------------
