@@ -6,6 +6,8 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Declaración de variables](#declaracion-de-variables)
 - [Operadores](#operadores)
 - [Funciones y argumentos](#funciones-y-argumentos)
+- [Clases en ES5](#clases-en-es5)
+- [Clases en ES6](#clases-en-es6)
 - [Tratamiento de arrays](#tratamiento-de-arrays)
 - [Tratamiento de strings](#tratamiento-de-strings)
 - [Objetos](#objetos)
@@ -87,13 +89,13 @@ function codeScript(){
 codeScript(3712,7123);
 ```
 
-* Establecer un valor por defecto a los argumentos de una función (si no pasamos un parámetro, JavaScript lo interpreta como "undefined"):
+* Establecer un valor por defecto a los argumentos de una función (ES5). Si no pasamos un parámetro, JavaScript lo interpreta como "undefined":
 ```javascript
-function valorPorDefectoEnUnArgumento(arg){
-	// siempre que "arg" sea "undefined", "arg" será igual a "valor por defecto"
-	var arg = arg || "valor por defecto";
+function valorPorDefectoEnUnArgumento(txt){
+	// siempre que "txt" sea "undefined", "txt" será igual a "valor por defecto"
+	txt = txt || "valor por defecto";
 	
-	console.log(arg);
+	console.log(txt);
 }
 
 valorPorDefectoEnUnArgumento("foo"); // "foo"
@@ -112,6 +114,111 @@ var hello;
 })();
 
 console.log( hello() ); // "Hi boy!"
+```
+
+----------------------------------------------------------
+## Clases en ES5
+
+* Ejemplo de clase en ES5:
+```javascript
+function Person(name) {
+	this.name = name;
+
+	this.salute = function() {
+		console.log("Hello, my name is " + this.name);
+	}
+}
+
+var john_doe = new Person("John Doe"); // Observa que estoy usando "new" !!
+john_doe.salute(); // Hello, my name is John Doe
+
+console.log(john_doe instanceof Person); // true
+console.log(john_doe instanceof Object); // true
+```
+
+----------------------------------------------------------
+## Clases en ES6
+
+* Ejemplo de clase en ES6:
+```javascript
+class Person {
+	constructor(name) {
+		// constructor es un método opcional. Si tu clase no tiene propiedades, puedes omitirlo.
+		this.name = name;
+	}
+
+	salute() {
+		console.log(`Hello, my name is ${this.name}`);
+	}
+}
+
+let john_doe = new Person("John Doe");
+
+john_doe.salute(); // Hello, my name is John Doe
+
+console.log(john_doe instanceof Person); // true
+console.log(john_doe instanceof Object); // true
+
+console.log( typeof john_doe); // object
+
+console.log( typeof Person); // function !! (Cuidado, podríamos pensar que no retornará "class" pero nos retorna "function")
+console.log( typeof Person.prototype.salute); // function !! (Cuidado, podríamos pensar que no retornará "method" pero nos retorna "function")
+```
+
+* Métodos estáticos:
+```javascript
+class Utilities {
+	static generateRandomInteger() {
+		// Esto es un método estático. 
+		// Permite ser llamado sin necesidad de instanciar la clase.
+		return Math.floor(Math.random() * 11); // retorna un numero entero aleatorio entre 0 y 10
+	}
+}
+
+let num = Utilities.generateRandomInteger(); // Llamamos directamente al método estático
+console.log(num); // 2
+```
+
+* Herencia:
+```javascript
+class Rectangle {
+	constructor(len, wid) {
+		this.len = len;
+		this.wid = wid;
+	}
+
+	getArea() {
+		return this.len * this.wid;
+	}
+
+	getInfo () {
+		return 'I am a naughty rectangle!';
+	}
+}
+
+class Square extends Rectangle { // extendemos la clase
+	constructor(len) {
+		super(len, len); // Invocamos al constructor de la clase padre
+	}
+
+	// Podría hacer referencia al método del padre, pero no es necesario ya que el método es heredado automáticamente.
+	// getArea() {
+	// 	return super.getArea(); // Fíjate que así invoco a un determinado método del padre.
+	// }
+
+	// Sobreescribir un método
+	getInfo () {
+		return 'I am a cheeky square!';
+	}
+}
+
+let square = new Square(4);
+console.log(square.getArea()); // 16. Observa que este método ha sido hererado de la clase padre
+
+console.log(square instanceof Square); // true
+console.log(square instanceof Rectangle); // true. Recuerda que Square extiende la clase Rectangle
+
+console.log(square.getInfo()); // I am a cheeky square!
 ```
 
 ----------------------------------------------------------
