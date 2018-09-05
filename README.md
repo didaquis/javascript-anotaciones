@@ -116,6 +116,38 @@ var hello;
 console.log( hello() ); // "Hi boy!"
 ```
 
+* Factory Functions (una "Factory Function" es una función que crea objetos y los retorna):
+```javascript
+// Ejemplo de Factory Function
+const cat = () => {
+	const sound = 'miau';
+
+	return {
+		talk: () => sound
+	}
+}
+
+const smurfy = cat(); // No debes usar "new"!
+console.log( smurfy.talk() ); // miau
+// console.log( smurfy instanceof cat ); // TypeError
+
+
+// Ejemplo similar usando una clase
+class Dog {
+	constructor() {
+		this.sound = 'woof';
+	}
+
+	talk() {
+		return this.sound
+	}
+}
+
+const sniffles = new Dog();
+console.log( sniffles.talk() ); // woof
+console.log( sniffles instanceof Dog ); // true
+```
+
 ----------------------------------------------------------
 ## Clases en ES5
 
