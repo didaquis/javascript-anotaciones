@@ -561,17 +561,40 @@ const newObject = deepClone(originalObject);
 ----------------------------------------------------------
 ## Set: 
 
+* Ejemplo básico de _set_:
+```javascript
+const set = new Set([1, 2, 3, 4, 5]); // permite almacenar valores únicos de cualquier tipo, incluso valores primitivos u objetos de referencia. Se forma a partir de un objeto iterable. Se puede crear vacío pasándole null.
+set.has(4); // true
+set.has('4'); // false. No se ha almacenado un string, si no un entero.
+
+set.delete(5); // true
+
+set.add('foo'); // {1, 2, 3, 4, "foo"}
+
+const s = new Set([{a:1},{b:2},{a:1}]);
+console.log(s); // {{a:1},{b:2},{a:1}} Observa que en este caso hay un objeto duplicado, ya que son dos objetos distintos.
+console.log(s.size); // 3
+
+s.clear(); // Vacía de elementos el set
+```
+
 * Descomponer strings usando _set_ (recuerda que no permite valores duplicados):
 ```javascript
-let foooooooooo = new Set('foooooooooo');
-console.log(foooooooooo); // Set(2) {"f", "o"}
+let mySet = new Set('foooooooooo'); // esto sucede porque le estamos pasando un valor iterable (en este caso, un string)
+console.log(mySet); // {"f", "o"}
+
+for (let i of mySet) {
+	console.log(i);
+} // Una manera de iterar un set
+
+mySet.forEach(i => console.log(i)); // Otra manera de iterar un set. Ojo, no funcionan: filter, map y reduce. Aunque puedes transformarlo en un array para usar estos métodos así: [...mySet]
 ```
 
 * Eliminar elementos duplicados en un array mediante _set_ y _spread_ operator:
 ```javascript
 let nums = [1, 2, 2, 2, 2, 3, 4];
 function deleteDuplicated(items) {
-	return [ ... new Set(items) ];
+	return [ ... new Set(items) ]; // retorna un array
 }
 console.log( deleteDuplicated(nums) ); // [1, 2, 3, 4]
 ```
