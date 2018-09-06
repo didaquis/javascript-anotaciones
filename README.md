@@ -147,6 +147,35 @@ const sniffles = new Dog();
 console.log( sniffles.talk() ); // woof
 console.log( sniffles instanceof Dog ); // true
 ```
+Otro ejemplo de _Factory Functions_ más avanzado:
+```javascript
+// Ejemplo avanzado de Factory Function:
+const dataConnection = (data = {}) => {
+    const settings = data; // guardo los parámetros que me han pasado al llamar a la función. De esta manera puedo definir propiedades
+    return Object.freeze({
+        // Object.freeze previene la eliminación y adición de propiedades, modificación del prototype, etc.
+        getSettings: () => settings,
+        modifySettings: (addData = {}) => {
+            return Object.assign(settings, addData); // Añadimos al objeto 'settings' nuevas propiedades, o bien modificamos el valor de las existentes
+        }
+    });
+}
+
+const connection = dataConnection( { ip: '127.0.0.1', port: '8080' } ); // Le paso como parámetro un objeto
+
+console.log( connection.getSettings() ); // {ip: "127.0.0.1", port: "8080"}
+console.log( connection.getSettings().ip ); // 127.0.0.1
+
+connection.method = 'http'; // Esto NO funcionará! Gracias a 'Object.freeze' no puedo añadir propiedades al objeto. Sólo veré un error si uso: 'use strict';
+//connection.settings.method = 'http'; // Esto NO funcionará! TypeError
+
+connection.modifySettings( { method: 'http' } ); // Usamos un método definido en el objeto para modificar los valores que contiene el objeto.
+console.log( connection.getSettings() ); // {ip: "127.0.0.1", port: "8080", method: "http"}
+
+connection.modifySettings( { ip: '192.168.2.11' } ); // Podemos sobreescribir los valores del objeto 'settings'.
+console.log( connection.getSettings() ); // {ip: "192.168.2.11", port: "8080", method: "http"}
+```
+
 
 ----------------------------------------------------------
 ## Clases en ES5
