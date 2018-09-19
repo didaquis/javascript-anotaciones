@@ -81,12 +81,19 @@ if (!!foo) { // 'Result is false' Dado que el valor de foo es null.
 
 * _arguments_ (array de argumentos que se le pasan a una función):
 ```javascript
-function codeScript(){
-	for(var j = 0; j <= arguments.length -1; j++){
+function printArguments(){
+	for(var j = 0; j < arguments.length; j++){
 		console.log(arguments[j]);
 	}
 }
-codeScript(3712,7123);
+printArguments(3712,7123);
+
+
+// ES6 Style
+function printArgumentsES6(...arg){
+	arg.forEach((a) => console.log(a));
+}
+printArgumentsES6(3712,7123);
 ```
 
 * Establecer un valor por defecto a los argumentos de una función (ES5). Si no pasamos un parámetro, JavaScript lo interpreta como "undefined":
