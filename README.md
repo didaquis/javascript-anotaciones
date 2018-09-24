@@ -94,6 +94,13 @@ function printArgumentsES6(...arg){
 	arg.forEach((a) => console.log(a));
 }
 printArgumentsES6(3712,7123);
+
+function printArgumentsES6ForOf(){
+	for(let argument of arguments){
+		console.log(argument);
+	}
+}
+printArgumentsES6ForOf(3712,7123);
 ```
 
 * Establecer un valor por defecto a los argumentos de una función (ES5). Si no pasamos un parámetro, JavaScript lo interpreta como "undefined":
