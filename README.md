@@ -443,6 +443,15 @@ arrayOfObjects.forEach(
 	}
 );
 console.log(results); // "LauraJavier"
+
+
+
+// Otra manera de implementarlo:
+function fooFunction(currentValue,index,array) {
+	// ...
+}
+
+a.forEach(fooFunction, this); // Podemos simplemente nombrar la función en vez de declararla dentro del forEach. Adicionalmente, podemos pasarle el objeto 'this' a la función.
 ```
 
 * Uso de: _array.reduce_ (aplica una función a un acumulador y a cada valor de un array (de izquierda a derecha) para reducirlo a un único valor.)
