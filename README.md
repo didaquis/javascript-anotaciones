@@ -248,10 +248,15 @@ class Utilities {
 		// Permite ser llamado sin necesidad de instanciar la clase.
 		return Math.floor(Math.random() * 11); // retorna un numero entero aleatorio entre 0 y 10
 	}
+
+	static coinToss() {
+		return Math.random() > .5; // retorna "true" o "false" de manera aleatoria
+	}
 }
 
 let num = Utilities.generateRandomInteger(); // Llamamos directamente al método estático
 console.log(num); // 2
+console.log(Utilities.coinToss()); // true/false
 ```
 
 * Herencia:
