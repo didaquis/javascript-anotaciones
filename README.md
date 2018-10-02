@@ -174,9 +174,11 @@ const dataConnection = (data = {}) => {
 	return Object.freeze({
         // Object.freeze evita la eliminación y adición de propiedades, modificación del prototype, etc.
         getSettings: () => settings,
+
         modifySettings: (addData = {}) => {
-            return Object.assign(settings, addData);
-			// Añadimos al objeto 'settings' nuevas propiedades, o bien modificamos el valor de las existentes
+            return Object.assign(settings, addData); 
+		// Añadimos al objeto 'settings' nuevas propiedades
+		// o bien modificamos el valor de las existentes.
         }
     });
 }
@@ -232,7 +234,7 @@ console.log(john_doe instanceof Object); // true
 ```javascript
 class Person {
 	constructor(name) {
-		// constructor es un método opcional. Si tu clase no tiene propiedades, puedes omitirlo
+		// constructor es un método opcional. Si la clase no tiene propiedades puedes omitirlo
 		this.name = name;
 	}
 
@@ -610,7 +612,8 @@ const newObject = deepClone(originalObject);
 
 * Ejemplo básico de _set_:
 ```javascript
-const set = new Set([1, 2, 3, 4, 5]); // permite almacenar valores únicos de cualquier tipo, incluso valores primitivos u objetos de referencia.
+const set = new Set([1, 2, 3, 4, 5]);
+// Almacena valores únicos de cualquier tipo, incluso valores primitivos u objetos de referencia.
 // Se forma a partir de un objeto iterable. Se puede crear vacío pasándole null.
 
 set.has(4); // true
@@ -622,7 +625,7 @@ set.add('foo'); // {1, 2, 3, 4, "foo"}
 
 const s = new Set([{a:1},{b:2},{a:1}]);
 console.log(s); // {{a:1},{b:2},{a:1}}
-// Observa que en este caso hay un objeto aparentemente duplicado, en realidad son dos objetos distintos.
+// Observa que en este caso parece existir un objeto duplicado, en realidad son objetos distintos!
 
 console.log(s.size); // 3
 
@@ -631,7 +634,8 @@ s.clear(); // Vacía de elementos el set
 
 * Descomponer strings usando _set_ (recuerda que no permite valores duplicados):
 ```javascript
-let mySet = new Set('foooooooooo'); // esto sucede porque le estamos pasando un valor iterable (en este caso, un string)
+let mySet = new Set('foooooooooo');
+// Esto sucede porque le estamos pasando un valor iterable (en este caso, un string)
 console.log(mySet); // {"f", "o"}
 
 for (let i of mySet) {
