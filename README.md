@@ -168,28 +168,39 @@ Otro ejemplo de _Factory Functions_ más avanzado:
 ```javascript
 // Ejemplo avanzado de Factory Function:
 const dataConnection = (data = {}) => {
-    const settings = data; // guardo los parámetros que me han pasado al llamar a la función. De esta manera puedo definir propiedades
-    return Object.freeze({
-        // Object.freeze previene la eliminación y adición de propiedades, modificación del prototype, etc.
+    const settings = data; // Guardo los parámetros que me han pasado al llamar a la factory function.
+	// De esta manera puedo definir propiedades del nuevo objeto.
+    
+	return Object.freeze({
+        // Object.freeze evita la eliminación y adición de propiedades, modificación del prototype, etc.
         getSettings: () => settings,
         modifySettings: (addData = {}) => {
-            return Object.assign(settings, addData); // Añadimos al objeto 'settings' nuevas propiedades, o bien modificamos el valor de las existentes
+            return Object.assign(settings, addData);
+			// Añadimos al objeto 'settings' nuevas propiedades, o bien modificamos el valor de las existentes
         }
     });
 }
 
-const connection = dataConnection( { ip: '127.0.0.1', port: '8080' } ); // Le paso como parámetro un objeto
+const connection = dataConnection( { ip: '127.0.0.1', port: '8080' } );
+// Le paso como parámetro un objeto
 
 console.log( connection.getSettings() ); // {ip: "127.0.0.1", port: "8080"}
 console.log( connection.getSettings().ip ); // 127.0.0.1
 
-connection.method = 'http'; // Esto NO funcionará! Gracias a 'Object.freeze' no puedo añadir propiedades al objeto. Sólo veré un error si uso: 'use strict';
+connection.method = 'http'; // Esto NO funcionará!
+// Gracias a 'Object.freeze' no puedo añadir propiedades al objeto.
+// Sólo veré un error si uso: 'use strict';
+
 //connection.settings.method = 'http'; // Esto NO funcionará! TypeError
 
-connection.modifySettings( { method: 'http' } ); // Usamos un método definido en el objeto para modificar los valores que contiene el objeto.
+connection.modifySettings( { method: 'http' } );
+// Usamos un método definido en el objeto para modificar los valores que contiene el objeto.
+
 console.log( connection.getSettings() ); // {ip: "127.0.0.1", port: "8080", method: "http"}
 
-connection.modifySettings( { ip: '192.168.2.11' } ); // Podemos sobreescribir los valores del objeto 'settings'.
+connection.modifySettings( { ip: '192.168.2.11' } );
+// Podemos sobreescribir los valores del objeto 'settings'.
+
 console.log( connection.getSettings() ); // {ip: "192.168.2.11", port: "8080", method: "http"}
 ```
 
@@ -221,7 +232,7 @@ console.log(john_doe instanceof Object); // true
 ```javascript
 class Person {
 	constructor(name) {
-		// constructor es un método opcional. Si tu clase no tiene propiedades, puedes omitirlo.
+		// constructor es un método opcional. Si tu clase no tiene propiedades, puedes omitirlo
 		this.name = name;
 	}
 
@@ -239,8 +250,11 @@ console.log(john_doe instanceof Object); // true
 
 console.log( typeof john_doe); // object
 
-console.log( typeof Person); // function !! (Cuidado, podríamos pensar que no retornará "class" pero nos retorna "function")
-console.log( typeof Person.prototype.salute); // function !! (Cuidado, podríamos pensar que no retornará "method" pero nos retorna "function")
+console.log( typeof Person); // function !!
+// (Cuidado, podríamos pensar que no retornará "class" pero nos retorna "function")
+
+console.log( typeof Person.prototype.salute); // function !!
+// (Cuidado, podríamos pensar que no retornará "method" pero nos retorna "function")
 ```
 
 * Métodos estáticos:
@@ -249,7 +263,7 @@ class Utilities {
 	static generateRandomInteger() {
 		// Esto es un método estático. 
 		// Permite ser llamado sin necesidad de instanciar la clase.
-		return Math.floor(Math.random() * 11); // retorna un numero entero aleatorio entre 0 y 10
+		return Math.floor(Math.random() * 11); // retorna numero entero aleatorio entre 0 y 10
 	}
 
 	static coinToss() {
@@ -284,7 +298,8 @@ class Square extends Rectangle { // extendemos la clase
 		super(len, len); // Invocamos al constructor de la clase padre
 	}
 
-	// Podría hacer referencia al método del padre, pero no es necesario ya que el método es heredado automáticamente.
+	// Podría hacer referencia al método del padre, pero no es necesario!
+	// Puedo omitirlo, ya que el método es heredado automáticamente.
 	// getArea() {
 	// 	return super.getArea(); // Fíjate que así invoco a un determinado método del padre.
 	// }
@@ -454,7 +469,8 @@ function fooFunction(currentValue,index,array) {
 	// ...
 }
 
-a.forEach(fooFunction, this); // Podemos simplemente nombrar la función en vez de declararla dentro del forEach. Adicionalmente, podemos pasarle el objeto 'this' a la función.
+a.forEach(fooFunction, this); // Podemos nombrar la función en vez de declararla dentro del forEach.
+// Adicionalmente, podemos pasarle el objeto 'this' a la función.
 ```
 
 * Uso de: _array.reduce_ (aplica una función a un acumulador y a cada valor de un array (de izquierda a derecha) para reducirlo a un único valor.)
@@ -594,7 +610,9 @@ const newObject = deepClone(originalObject);
 
 * Ejemplo básico de _set_:
 ```javascript
-const set = new Set([1, 2, 3, 4, 5]); // permite almacenar valores únicos de cualquier tipo, incluso valores primitivos u objetos de referencia. Se forma a partir de un objeto iterable. Se puede crear vacío pasándole null.
+const set = new Set([1, 2, 3, 4, 5]); // permite almacenar valores únicos de cualquier tipo, incluso valores primitivos u objetos de referencia.
+// Se forma a partir de un objeto iterable. Se puede crear vacío pasándole null.
+
 set.has(4); // true
 set.has('4'); // false. No se ha almacenado un string, si no un entero.
 
@@ -603,7 +621,9 @@ set.delete(5); // true
 set.add('foo'); // {1, 2, 3, 4, "foo"}
 
 const s = new Set([{a:1},{b:2},{a:1}]);
-console.log(s); // {{a:1},{b:2},{a:1}} Observa que en este caso hay un objeto duplicado, ya que son dos objetos distintos.
+console.log(s); // {{a:1},{b:2},{a:1}}
+// Observa que en este caso hay un objeto aparentemente duplicado, en realidad son dos objetos distintos.
+
 console.log(s.size); // 3
 
 s.clear(); // Vacía de elementos el set
@@ -618,7 +638,9 @@ for (let i of mySet) {
 	console.log(i);
 } // Una manera de iterar un set
 
-mySet.forEach(i => console.log(i)); // Otra manera de iterar un set. Ojo, no funcionan: filter, map y reduce. Aunque puedes transformarlo en un array para usar estos métodos así: [...mySet]
+mySet.forEach(i => console.log(i)); // Otra manera de iterar un set.
+// Ojo, no funcionan: filter, map y reduce.
+// Aunque puedes transformarlo en un array para usar estos métodos así: [...mySet]
 ```
 
 * Eliminar elementos duplicados en un array mediante _set_ y _spread_ operator:
