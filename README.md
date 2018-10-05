@@ -5,6 +5,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 ## Tabla de Contenido
 - [Declaración de variables](#declaracion-de-variables)
 - [Operadores](#operadores)
+- [Condicionales](#condicionales)
 - [Funciones y argumentos](#funciones-y-argumentos)
 - [Clases en ES5](#clases-en-es5)
 - [Clases en ES6](#clases-en-es6)
@@ -77,6 +78,21 @@ if (!!foo) { // 'Result is false' Dado que el valor de foo es null.
 !!{} // true (an empty object is truthy)
 !![] // true (an empty array is truthy. PHP programmers beware!)
 !!NaN // false
+```
+
+----------------------------------------------------------
+## Condicionales:  
+
+* Condicional _if_ comparando múltiples criterios:
+```javascript
+const fruit = 'strawberry';
+
+// Creamos un array con aquellos criterios a los que comparar
+const criteria = ['apple', 'strawberry', 'cranberries'];
+
+if (criteria.includes(fruit)) {
+	// true
+}
 ```
 
 ----------------------------------------------------------
