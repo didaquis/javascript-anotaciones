@@ -15,6 +15,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Set](#set)
 - [Map](#map)
 - [Debugging y console](#debugging-y-console)
+- [Async-Await](#async-await)
 
 
 ----------------------------------------------------------
@@ -786,6 +787,59 @@ console.log( classOf( ["A", "B"] ) ); // "Array"
 console.log( classOf( "foo" ) ); // "String"
 console.log( classOf( 4 ) ); // "Number"
 console.log( classOf( /[a]/g ) ); // "RegExp"
+```
+
+----------------------------------------------------------
+## Async-Await:
+
+Recuerda que _async_ crea una promesa.  
+
+* Uso de _async-await_:
+```javascript
+// Ejemplo 1:
+async function cooking() {
+	const a = await obtainIngredientA();
+	const b = await obtainIngredientB();
+	const recipe = await newRecipe(a,b);
+	return recipe;
+} // async convierte esta función en una promesa
+
+cooking().then((result) => {
+	console.log(result);
+}).catch((e) => {
+	// if 'cooking' function or 'then' method throw an error...
+	console.error(e.message);
+});
+
+
+// Ejemplo 2:
+const getIngredients = async () => {
+	try {
+		const butter = await getButter();
+		const flour = await getFlour();
+		const sugar = await getSugar();
+		const eggs = await getEggs();
+		return [
+			butter,
+			flour,
+			sugar,
+			eggs,
+		];
+	} catch(e) { 
+		return e; 
+	}
+}
+
+getIngredients().then((result) => {
+	if (result instanceof Error) {
+		// if 'getIngredients' function throw an error...
+		console.error(result.message);
+	}
+	// ...
+}).catch((e) => {
+	// if 'then' method throw an error...
+	console.error(e.message);
+});
 ```
 
 ----------------------------------------------------------
