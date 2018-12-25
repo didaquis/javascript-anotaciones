@@ -572,7 +572,8 @@ text = text.split("potato").join("cheese");
 * Contexto de _this_:
 ```javascript
 var biz = {
-	nombre: "Pedro",
+	nombre: "Dídac",
+	"nombre-apellido": "Dídac García", // entrecomillado por contener un guión!
 
 	// error, "this" apunta al objecto global:
 	saludar: 'Hola, soy ' + this.nombre,
@@ -580,11 +581,20 @@ var biz = {
 	// correcto, "this" apunta a "biz":
 	presentarse: function(){
 		return 'Mi nombre es ' + this.nombre;
-	}
+	},
+
+	get nombreCompleto() { return this["nombre-apellido"]}
 }
 
 console.log(biz.saludar); // 'Hola, soy undefined'
 console.log(biz.presentarse()); // 'Mi nombre es Pedro'
+
+console.log(biz.nombreCompleto); // "Dídac García"
+
+console.log(biz.nombre-apellido); // Error!
+console.log(biz["nombre-apellido"]); // "Dídac García"
+
+delete biz["nombre-apellido"]; // Siempre retorna true! Incluso cuando no existe la propiedad a borrar
 ```
 
 * Obtener un array a partir de las propiedades de un objeto:
