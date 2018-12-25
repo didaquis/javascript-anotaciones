@@ -136,6 +136,23 @@ valorPorDefectoEnUnArgumento("foo"); // "foo"
 valorPorDefectoEnUnArgumento(); // "valor por defecto"
 ```
 
+* Uso de destructuring para mejorar la legibilidad del siginificado de los parámetros que mandamos a una función:
+```javascript
+function createMenu({ title, body, buttonText, cancellable=false}) {
+ // ...
+ // Fíjate que establecemos un valor por defecto al argumento "cancellable"
+}
+
+createMenu({
+	title: 'my title',
+	body: 'my body',
+	buttonText: 'send form',
+	cancellable: true
+}); // observa que así es totalmente comprensible el significado de los parámetros.
+// Sin embargo, no hubieramos entendido nada así: createMenu('my title', 'my body', 'send form', true);
+// ¿Sabríamos entender que significa el true en la segunda llamada? Probablemente no!
+```
+
 * Self Invoking Functions:
 ```javascript
 var hello;
