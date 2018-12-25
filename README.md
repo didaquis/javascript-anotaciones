@@ -341,6 +341,11 @@ console.log(square.getInfo()); // I am a cheeky square!
 ----------------------------------------------------------
 ## Tratamiento de arrays:
 
+* Crear un array con _n_ número de posiciones con un valor por defecto
+```javascript
+new Array(3).fill(0); // [0,0,0]
+```
+
 * Clonar un array
 ```javascript
 /**
