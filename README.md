@@ -378,6 +378,14 @@ myArray.length = 0;
 console.log(myArray); // []
 ```
 
+* Quitar elementos _falsy_ de un array
+```javascript
+const myArray = [0, "0", "example", null, undefined, NaN, false];
+
+let arrayFiltered = myArray.filter(Boolean);
+console.log(arrayFiltered); // ["0", "example"]
+```
+
 * Uso de: _array.join_ (retorna un string)
 ```javascript
 var a = ['Wind', 'Rain', 'Fire'];
