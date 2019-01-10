@@ -156,14 +156,28 @@ console.log( hello() ); // "Hi boy!"
 const cat = () => {
 	const sound = 'miau';
 
+	let color = 'white';
+	// definimos getters and setters para acceder a las propiedades
+	const setColor = (newColor) => {
+		color = newColor;
+	}
+	const getColor = (newColor) => {
+		return color;
+	}
+
 	return {
-		talk: () => sound
+		talk: () => sound,
+		setColor,
+		getColor
 	}
 }
 
 const smurfy = cat(); // No debes usar "new"!
 console.log( smurfy.talk() ); // miau
 // console.log( smurfy instanceof cat ); // TypeError
+console.log( smurfy.getColor() ); // 'white'
+smurfy.setColor('black');
+console.log( smurfy.getColor() ); // 'black'
 
 
 // Ejemplo similar usando una clase
