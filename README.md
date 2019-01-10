@@ -307,6 +307,39 @@ console.log( typeof Person.prototype.salute); // function !!
 // (Cuidado, podríamos pensar que no retornará "method" pero nos retorna "function")
 ```
 
+* Ejemplo de Chaining Methods (métodos encadenados):
+```javascript
+class Car {
+	constructor(brand, model, color) {
+		this.brand = brand;
+		this.model = model;
+		this.color = color;
+	}
+
+	setBrand(brand) {
+		this.brand = brand;
+		return this; // Returning this for chaining
+	}
+	setModel(model) {
+		this.model = model;
+		return this; // Returning this for chaining
+	}
+	setColor(color) {
+		this.color = color;
+		return this; // Returning this for chaining
+	}
+
+	getCarInfo() {
+		return this; // Returning this for chaining
+	}
+}
+
+const car = new Car('Ford','F-150','red').setColor('pink').setModel('Fiesta'); // Chaining methods!
+
+console.log( car.getCarInfo() ); // {brand: "Ford", model: "Fiesta", color: "pink"}
+```
+
+
 * Métodos estáticos:
 ```javascript
 class Utilities {
