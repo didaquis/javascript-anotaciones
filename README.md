@@ -136,6 +136,23 @@ valorPorDefectoEnUnArgumento("foo"); // "foo"
 valorPorDefectoEnUnArgumento(); // "valor por defecto"
 ```
 
+* Uso de destructuring para mejorar la legibilidad del siginificado de los parámetros que mandamos a una función:
+```javascript
+function createMenu({ title, body, buttonText, cancellable=false}) {
+ // ...
+ // Fíjate que establecemos un valor por defecto al argumento "cancellable"
+}
+
+createMenu({
+	title: 'my title',
+	body: 'my body',
+	buttonText: 'send form',
+	cancellable: true
+}); // observa que así es totalmente comprensible el significado de los parámetros.
+// Sin embargo, no hubieramos entendido nada así: createMenu('my title', 'my body', 'send form', true);
+// ¿Sabríamos entender que significa el true en la segunda llamada? Probablemente no!
+```
+
 * Self Invoking Functions:
 ```javascript
 var hello;
@@ -355,6 +372,11 @@ console.log(square.getInfo()); // I am a cheeky square!
 ----------------------------------------------------------
 ## Tratamiento de arrays:
 
+* Crear un array con _n_ número de posiciones con un valor por defecto
+```javascript
+new Array(3).fill(0); // [0,0,0]
+```
+
 * Clonar un array
 ```javascript
 /**
@@ -385,6 +407,14 @@ function recursiveArrayClone(arrayToClone){
 var myArray = ['a', 'b', 'c'];
 myArray.length = 0;
 console.log(myArray); // []
+```
+
+* Quitar elementos _falsy_ de un array
+```javascript
+const myArray = [0, "0", "example", null, undefined, NaN, false];
+
+let arrayFiltered = myArray.filter(Boolean);
+console.log(arrayFiltered); // ["0", "example"]
 ```
 
 * Uso de: _array.join_ (retorna un string)
@@ -581,7 +611,8 @@ text = text.split("potato").join("cheese");
 * Contexto de _this_:
 ```javascript
 var biz = {
-	nombre: "Pedro",
+	nombre: "Dídac",
+	"nombre-apellido": "Dídac García", // entrecomillado por contener un guión!
 
 	// error, "this" apunta al objecto global:
 	saludar: 'Hola, soy ' + this.nombre,
@@ -589,11 +620,20 @@ var biz = {
 	// correcto, "this" apunta a "biz":
 	presentarse: function(){
 		return 'Mi nombre es ' + this.nombre;
-	}
+	},
+
+	get nombreCompleto() { return this["nombre-apellido"]}
 }
 
 console.log(biz.saludar); // 'Hola, soy undefined'
 console.log(biz.presentarse()); // 'Mi nombre es Pedro'
+
+console.log(biz.nombreCompleto); // "Dídac García"
+
+console.log(biz.nombre-apellido); // Error!
+console.log(biz["nombre-apellido"]); // "Dídac García"
+
+delete biz["nombre-apellido"]; // Siempre retorna true! Incluso cuando no existe la propiedad a borrar
 ```
 
 * Obtener un array a partir de las propiedades de un objeto:
