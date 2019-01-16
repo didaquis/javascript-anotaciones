@@ -352,11 +352,16 @@ class Utilities {
 	static coinToss() {
 		return Math.random() > .5; // retorna "true" o "false" de manera aleatoria
 	}
+
+	static capitalize(str) {
+		return str.charAt(0).toUpperCase() + str.slice(1); // retorna un string poniendo en mayúscula la primera letra
+	}
 }
 
 let num = Utilities.generateRandomInteger(); // Llamamos directamente al método estático
 console.log(num); // 2
 console.log(Utilities.coinToss()); // true/false
+console.log(Utilities.capitalize('batman')); // 'Batman' 
 ```
 
 * Herencia:
