@@ -165,6 +165,15 @@ var hello;
 })();
 
 console.log( hello() ); // "Hi boy!"
+
+
+var result = (function () {
+    var name = "Barry";
+    return name;
+})();
+
+console.log(result); // El contenido de la variable result es el resultado de la ejecución de la función.
+// En este caso: "Barry"
 ```
 
 * Factory Functions (una "Factory Function" es una función que crea objetos y los retorna):
