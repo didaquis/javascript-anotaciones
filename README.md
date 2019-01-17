@@ -153,7 +153,7 @@ createMenu({
 // ¿Sabríamos entender que significa el true en la segunda llamada? Probablemente no!
 ```
 
-* Self Invoking Functions:
+* Self Invoking Functions, también llamadas IIFE (Immediately Invoked Function Expression):
 ```javascript
 var hello;
 (function (){
