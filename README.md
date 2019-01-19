@@ -1042,6 +1042,18 @@ getDataFromAsyncCode(); // Esto es una promesa. Debes tratar los resultados con 
 
 // También puedes hacer esto:
 console.log(await getDataFromAsyncCode()); // Ojo, estas deteniendo la ejecución del código
+
+
+// Ejemplo 4:
+// Traditional promise chaining
+getIssue()
+	.then(issue => getOwner(issue.ownerId))
+	.then(owner => sendEmail(owner.email, 'Some text'));
+
+// Using async functions! (Considera agruparlo bajo una función async si no quieres detener la ejecución del script)
+const issue = await getIssue();
+const owner = await getOwner(issue.ownerId);
+await sendEmail(owner.email, 'Some text');
 ```
 
 ----------------------------------------------------------
