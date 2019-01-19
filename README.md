@@ -15,6 +15,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Set](#set)
 - [Map](#map)
 - [Debugging y console](#debugging-y-console)
+- [De callback hell a promesas](#de-callback-hell-a-promesas)
 - [Async-Await](#async-await)
 
 
@@ -888,6 +889,68 @@ console.log( classOf( ["A", "B"] ) ); // "Array"
 console.log( classOf( "foo" ) ); // "String"
 console.log( classOf( 4 ) ); // "Number"
 console.log( classOf( /[a]/g ) ); // "RegExp"
+```
+
+----------------------------------------------------------
+## De callback hell a promesas:
+
+```javascript
+function justAnAsyncFunction(str, cb) {
+    // Esto sólo simula ser algo asíncrono
+    setTimeout(function(){
+        if(!str) {
+            cb({ok: false});
+        } else {
+            cb ({
+                ok: true, 
+                users: ['john', 'jack']
+            });
+        }
+    }, 2000);
+}
+
+
+function retrieveUsers(cb) {
+    // tipico ejemplo de anidación de funciones que contienen callback (callback hell)
+    justAnAsyncFunction('SELECT * FROM users', function(results) {
+        if (results.ok) {
+            cb(results.users);
+        } else {
+            cb('Error');
+        }
+    });
+}
+
+retrieveUsers(console.log); // retorna ["john", "jack"] al cabo de dos segundos.
+
+
+// Ahora fíjate como reescribiendo la función "retrieveUsers" se convierte en una promesa
+function retrieveUsers_promisify() {
+    return new Promise( (resolve, reject) => {
+        justAnAsyncFunction('SELECT * FROM users', function(results) {
+            if (results.ok) {
+                resolve( results.users );
+            } else {
+                reject( new Error('Error') );
+            }
+        });
+    });
+}
+
+// Esto nos permite llamarla e interactuar con ella como promesa!
+function getUserUsingPromises(cb) {
+    return retrieveUsers_promisify()
+    .then((results) => {
+        cb(results);
+    })
+    .catch((error) => {
+        console.error(error.message);
+    });
+}
+
+getUserUsingPromises(console.log); // esto es una promesa que tardará dos segundos en resolverse y dará este resultado: ["john", "jack"]
+
+console.log(await retrieveUsers_promisify()); // También puedo hacer esto! Ojo, aquí estoy deteniendo la ejecución hasta que el código asíncrono acabe de ejecutarse
 ```
 
 ----------------------------------------------------------
