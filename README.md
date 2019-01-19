@@ -941,6 +941,23 @@ getIngredients().then((result) => {
 	// if 'then' method throw an error...
 	console.error(e.message);
 });
+
+
+// Ejemplo 3:
+const to = (promise) => {
+    return promise.then((data) => [null, data]).catch((err) => [err]);
+};
+
+async function getDataFromAsyncCode() {
+    const [err, response] = await to(justAnAsyncFunction());
+    if (err) throw new Error(`Error: ${err}`);
+    return response;
+}
+
+getDataFromAsyncCode(); // Esto es una promesa. Debes tratar los resultados con 'then()' y 'catch()';
+
+// También puedes hacer esto:
+console.log(await getDataFromAsyncCode()); // Ojo, estas deteniendo la ejecución del código
 ```
 
 ----------------------------------------------------------
