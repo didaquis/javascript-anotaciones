@@ -16,6 +16,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Map](#map)
 - [Debugging y console](#debugging-y-console)
 - [De callback hell a promesas](#de-callback-hell-a-promesas)
+- [Promesas](#promesas)
 - [Async-Await](#async-await)
 
 
@@ -951,6 +952,26 @@ function getUserUsingPromises(cb) {
 getUserUsingPromises(console.log); // esto es una promesa que tardará dos segundos en resolverse y dará este resultado: ["john", "jack"]
 
 console.log(await retrieveUsers_promisify()); // También puedo hacer esto! Ojo, aquí estoy deteniendo la ejecución hasta que el código asíncrono acabe de ejecutarse
+```
+
+----------------------------------------------------------
+## Promesas:
+
+* Ejemplo de una cadena de promesas en la que la primera provee los datos para que la segunda puedan ejecutarse:
+```javascript
+const runAsyncFunctions = async () => {
+  const users = await getUsers(); // Esto retornaría un array
+
+  Promise.all(
+    users.map(async user => {
+      const userId = await getIdFromUser(user);
+
+	  const capitalizedId = await capitalizeIds(userId);
+    })
+  );
+}
+
+runAsyncFunctions(); // esto es una promesa
 ```
 
 ----------------------------------------------------------
