@@ -140,9 +140,9 @@ valorPorDefectoEnUnArgumento(); // "valor por defecto"
 
 * Uso de destructuring para mejorar la legibilidad del siginificado de los parámetros que mandamos a una función:
 ```javascript
-function createMenu({ title, body, buttonText, cancellable=false}) {
- // ...
- // Fíjate que establecemos un valor por defecto al argumento "cancellable"
+function createMenu({ title, body, buttonText, cancellable=false }) {
+	// ...
+	// Fíjate que establecemos un valor por defecto al argumento "cancellable"
 }
 
 createMenu({
@@ -150,9 +150,14 @@ createMenu({
 	body: 'my body',
 	buttonText: 'send form',
 	cancellable: true
-}); // observa que así es totalmente comprensible el significado de los parámetros.
+}); // observa que así es totalmente comprensible el significado de los parámetros. A esto lo llamamos "named parameters".
 // Sin embargo, no hubieramos entendido nada así: createMenu('my title', 'my body', 'send form', true);
 // ¿Sabríamos entender que significa el true en la segunda llamada? Probablemente no!
+
+// Podemos hacer lo siguiente si todos los parámetros son opcionales:
+function findUser({ id, username } = {}) {
+	// ...
+}
 ```
 
 * Self Invoking Functions, también llamadas IIFE (Immediately Invoked Function Expression):
