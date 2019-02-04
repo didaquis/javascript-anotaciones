@@ -18,6 +18,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [De callback hell a promesas](#de-callback-hell-a-promesas)
 - [Promesas](#promesas)
 - [Async-Await](#async-await)
+- [setTimeout](#setTimeout)
 
 
 ----------------------------------------------------------
@@ -1073,4 +1074,23 @@ await sendEmail(owner.email, 'Some text');
 
 ----------------------------------------------------------
 
+## setTimeout:
 
+* Truco para ejecutar un código al momento y repetir su ejecución de manera periódica:
+```javascript
+(function loop() {
+	// ... Your code!
+
+	setTimeout(loop, 2000);
+})();
+
+// También puedes hacer esto:
+(async function loop() {
+	// ... Your code!
+	await foo();
+
+	setTimeout(loop, 2000);
+})();
+```
+
+----------------------------------------------------------
