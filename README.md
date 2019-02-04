@@ -1070,6 +1070,19 @@ getIssue()
 const issue = await getIssue();
 const owner = await getOwner(issue.ownerId);
 await sendEmail(owner.email, 'Some text');
+
+
+// Ejemplo 5:
+async function foo(things) {
+	const results = [];
+	for (let thing of things) { // use "for ... of" in arrays or sets; use "for ... in" in objects
+		// good: all asynchronous operations are inmediately started
+		results.push( asyncFooFunction(thing) );
+	}
+
+	// now that all the asynchronous operations are running, here we wait until they all complete
+	return await Promise.all(results);
+}
 ```
 
 ----------------------------------------------------------
