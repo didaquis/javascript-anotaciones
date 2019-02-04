@@ -372,12 +372,22 @@ class Utilities {
 	static capitalize(str) {
 		return str.charAt(0).toUpperCase() + str.slice(1); // retorna un string poniendo en mayúscula la primera letra
 	}
+
+	static delay(miliseconds, callback) {
+		setTimeout(callback, miliseconds);
+	}
 }
 
 let num = Utilities.generateRandomInteger(); // Llamamos directamente al método estático
 console.log(num); // 2
-console.log(Utilities.coinToss()); // true/false
-console.log(Utilities.capitalize('batman')); // 'Batman' 
+
+console.log(Utilities.coinToss()); // true | false
+
+console.log(Utilities.capitalize('batman')); // 'Batman'
+
+Utilities.delay(3000, function () {
+	return console.log('delayed output');
+}); // 'delayed output', tres segundos después
 ```
 
 * Herencia:
