@@ -923,6 +923,31 @@ console.log( classOf( 4 ) ); // "Number"
 console.log( classOf( /[a]/g ) ); // "RegExp"
 ```
 
+* JSON.stringify fáciles de leer. Puedes usar el tercer parámetro para espicificar el tipo de indentación:
+```javascript
+const person = { firstName:"John", lastName:"Doe", age:34 };
+
+JSON.stringify(person, null, 2); // Indentación: dos espacios
+/*
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "age": 34
+}
+*/
+
+
+JSON.stringify(person, null, '\t'); // Indentación: tabulador
+/*
+{
+	"firstName": "John",
+	"lastName": "Doe",
+	"age": 34
+}
+*/
+```
+
+
 ----------------------------------------------------------
 ## De callback hell a promesas:
 
