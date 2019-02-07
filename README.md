@@ -9,6 +9,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Funciones y argumentos](#funciones-y-argumentos)
 - [Clases en ES5](#clases-en-es5)
 - [Clases en ES6](#clases-en-es6)
+- [Singleton](#singleton)
 - [Tratamiento de arrays](#tratamiento-de-arrays)
 - [Tratamiento de strings](#tratamiento-de-strings)
 - [Objetos](#objetos)
@@ -447,6 +448,51 @@ console.log(square instanceof Square); // true
 console.log(square instanceof Rectangle); // true. Recuerda que Square extiende la clase Rectangle
 
 console.log(square.getInfo()); // I am a cheeky square!
+```
+
+
+----------------------------------------------------------
+## Singleton:
+
+* Ejemplo de singleton pattern usando clases de ES6:
+```javascript
+class Singleton {
+	constructor(){
+		if (!Singleton.instance) {
+			this._data = [];
+			Singleton.instance = this;
+		}
+		return Object.freeze(Singleton.instance);
+	}
+
+	// Methods
+	add(item){
+		this._data.push(item);
+	}
+
+	get(id){
+		return this._data.find(d => d.id === id);
+	}
+}
+
+// Puedes exportar esta clase como un módulo:
+// module.exports = Singleton;
+
+// Impórtalo así:
+// const Singleton = require('./Singleton');
+// const foo = new Singleton();
+
+let first = new Singleton();
+let second = new Singleton();
+
+first.add( { id: 1, name: 'john' } );
+first.add( { id: 2, name: 'louis' } );
+
+console.log(second); // [ {id: 1, name: "john"}, {id: 2, name: "louis"} ]
+
+console.log(second.get(2)); // { id: 2, name: 'louis' }
+
+console.log(first===second); // true (son la misma instancia)
 ```
 
 ----------------------------------------------------------
