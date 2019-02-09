@@ -953,20 +953,21 @@ console.error("Algo salió mal");
 
 * Un pequeño truco para saber con que tipo de objeto trabajamos:
 ```javascript
-function classOf(element){
-	if(element === null){
-		return "Null";
-	}
-	if(element === undefined){
-		return "Undefined";
-	}
+function typeOf (element){
 	return Object.prototype.toString.call(element).slice(8,-1);
 }
 
-console.log( classOf( ["A", "B"] ) ); // "Array"
-console.log( classOf( "foo" ) ); // "String"
-console.log( classOf( 4 ) ); // "Number"
-console.log( classOf( /[a]/g ) ); // "RegExp"
+console.log( typeOf( ["A", "B"] ) ); // "Array"
+console.log( typeOf( "foo" ) ); // "String"
+console.log( typeOf( 4 ) ); // "Number"
+console.log( typeOf( /[a]/g ) ); // "RegExp"
+console.log( typeOf( new Set() ) ); // "Set"
+console.log( typeOf( new Map() ) ); // "Map"
+console.log( typeOf( () => {} ) ); // "Function"
+console.log( typeOf( null ) ); // "Null"
+console.log( typeOf( undefined ) ); // "Undefined"
+console.log( typeOf( NaN ) ); // "Number"
+console.log( typeOf( new Date ) ); // "Date"
 ```
 
 * JSON.stringify fáciles de leer. Puedes usar el tercer parámetro para espicificar el tipo de indentación:
