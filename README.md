@@ -177,8 +177,8 @@ console.log( hello() ); // "Hi boy!"
 
 
 var result = (function () {
-    var name = "Barry";
-    return name;
+	var name = "Barry";
+	return name;
 })();
 
 console.log(result); // El contenido de la variable result es el resultado de la ejecución de la función.
@@ -189,9 +189,10 @@ console.log(result); // El contenido de la variable result es el resultado de la
 ```javascript
 // Ejemplo de Factory Function
 const cat = () => {
-	const sound = 'miau';
 
+	const sound = 'miau';
 	let color = 'white';
+
 	// definimos getters and setters para acceder a las propiedades
 	const setColor = (newColor) => {
 		color = newColor;
@@ -215,38 +216,61 @@ smurfy.setColor('black');
 console.log( smurfy.getColor() ); // 'black'
 
 
-// Ejemplo similar usando una clase
-class Dog {
-	constructor() {
-		this.sound = 'woof';
+// Otro ejemplo potenciando el uso de "clousures"
+const makeCounter = function() {
+	// propiedades privadas
+	let count = 0;
+
+	// métodos privados
+	const changeBy = (val) => {
+		count += val;
 	}
 
-	talk() {
-		return this.sound
+	// definimos los métodos publicos
+	return {
+		increment: function() {
+			changeBy(1);
+		},
+		decrement: function() {
+			changeBy(-1);
+		},
+		getValue: function() {
+			return count;
+		}
 	}
-}
+};
 
-const sniffles = new Dog();
-console.log( sniffles.talk() ); // woof
-console.log( sniffles instanceof Dog ); // true
+const Counter1 = makeCounter();
+const Counter2 = makeCounter();
+
+console.log(Counter1.getValue()); // 0
+
+Counter1.increment();
+Counter1.increment();
+console.log(Counter1.getValue()); // 2
+
+Counter1.decrement();
+console.log(Counter1.getValue()); // 1
+
+console.log(Counter2.getValue()); // 0
 ```
 Otro ejemplo de _Factory Functions_ más avanzado:
 ```javascript
 // Ejemplo avanzado de Factory Function:
 const dataConnection = (data = {}) => {
-    const settings = data; // Guardo los parámetros que me han pasado al llamar a la factory function.
+	const settings = data; // Guardo los parámetros que me han pasado al llamar a la factory function.
 	// De esta manera puedo definir propiedades del nuevo objeto.
-    
+	
 	return Object.freeze({
-        // Object.freeze evita la eliminación y adición de propiedades, modificación del prototype, etc.
-        getSettings: () => settings,
+		// Object.freeze evita la eliminación y adición de propiedades, modificación del prototype, etc.
+		getSettings: () => settings,
 
-        modifySettings: (addData = {}) => {
-            return Object.assign(settings, addData); 
+		modifySettings: (addData = {}) => {
+			return Object.assign(settings, addData); 
 		// Añadimos al objeto 'settings' nuevas propiedades
 		// o bien modificamos el valor de las existentes.
-        }
-    });
+		}
+	});
 }
 
 const connection = dataConnection( { ip: '127.0.0.1', port: '8080' } );
@@ -1000,29 +1024,29 @@ JSON.stringify(person, null, '\t'); // Indentación: tabulador
 
 ```javascript
 function justAnAsyncFunction(str, cb) {
-    // Esto sólo simula ser algo asíncrono
-    setTimeout(function(){
-        if(!str) {
-            cb({ok: false});
-        } else {
-            cb ({
-                ok: true, 
-                users: ['john', 'jack']
-            });
-        }
-    }, 2000);
+	// Esto sólo simula ser algo asíncrono
+	setTimeout(function(){
+		if(!str) {
+			cb({ok: false});
+		} else {
+			cb ({
+				ok: true, 
+				users: ['john', 'jack']
+			});
+		}
+	}, 2000);
 }
 
 
 function retrieveUsers(cb) {
-    // tipico ejemplo de anidación de funciones que contienen callback (callback hell)
-    justAnAsyncFunction('SELECT * FROM users', function(results) {
-        if (results.ok) {
-            cb(results.users);
-        } else {
-            cb('Error');
-        }
-    });
+	// tipico ejemplo de anidación de funciones que contienen callback (callback hell)
+	justAnAsyncFunction('SELECT * FROM users', function(results) {
+		if (results.ok) {
+			cb(results.users);
+		} else {
+			cb('Error');
+		}
+	});
 }
 
 retrieveUsers(console.log); // retorna ["john", "jack"] al cabo de dos segundos.
@@ -1030,26 +1054,26 @@ retrieveUsers(console.log); // retorna ["john", "jack"] al cabo de dos segundos.
 
 // Ahora fíjate como reescribiendo la función "retrieveUsers" se convierte en una promesa
 function retrieveUsers_promisify() {
-    return new Promise( (resolve, reject) => {
-        justAnAsyncFunction('SELECT * FROM users', function(results) {
-            if (results.ok) {
-                resolve( results.users );
-            } else {
-                reject( new Error('Error') );
-            }
-        });
-    });
+	return new Promise( (resolve, reject) => {
+		justAnAsyncFunction('SELECT * FROM users', function(results) {
+			if (results.ok) {
+				resolve( results.users );
+			} else {
+				reject( new Error('Error') );
+			}
+		});
+	});
 }
 
 // Esto nos permite llamarla e interactuar con ella como promesa!
 function getUserUsingPromises(cb) {
-    return retrieveUsers_promisify()
-    .then((results) => {
-        cb(results);
-    })
-    .catch((error) => {
-        console.error(error.message);
-    });
+	return retrieveUsers_promisify()
+	.then((results) => {
+		cb(results);
+	})
+	.catch((error) => {
+		console.error(error.message);
+	});
 }
 
 getUserUsingPromises(console.log); // esto es una promesa que tardará dos segundos en resolverse y dará este resultado: ["john", "jack"]
@@ -1066,11 +1090,11 @@ const runAsyncFunctions = async () => {
   const users = await getUsers(); // Esto retornaría un array
 
   Promise.all(
-    users.map(async user => {
-      const userId = await getIdFromUser(user);
+	users.map(async user => {
+	  const userId = await getIdFromUser(user);
 
 	  const capitalizedId = await capitalizeIds(userId);
-    })
+	})
   );
 }
 
@@ -1132,13 +1156,13 @@ getIngredients().then((result) => {
 
 // Ejemplo 3:
 const to = (promise) => {
-    return promise.then((data) => [null, data]).catch((err) => [err]);
+	return promise.then((data) => [null, data]).catch((err) => [err]);
 };
 
 async function getDataFromAsyncCode() {
-    const [err, response] = await to(justAnAsyncFunction());
-    if (err) throw new Error(`Error: ${err}`);
-    return response;
+	const [err, response] = await to(justAnAsyncFunction());
+	if (err) throw new Error(`Error: ${err}`);
+	return response;
 }
 
 getDataFromAsyncCode(); // Esto es una promesa. Debes tratar los resultados con 'then()' y 'catch()';
