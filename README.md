@@ -39,9 +39,7 @@ var a = 1, b = 2;
 ```javascript
 var foo = false || ':-)'; // ':-)'
 
-
 var bar = 3 || false; // 3
-
 
 var foobar = null || 0 || undefined || "NyanCat"; // "NyanCat"
 ```
@@ -63,9 +61,9 @@ console.log(bar); // ["bar 1", "bar 2", "foo 1", " foo 2", "bar 3"]
 * Doble uso del operador _!_ (not):
 ```javascript
 // La doble negación retorna un booleano dependiendo de la "truthiness" de la expresión.
-// Retornará false cuando el valor sea: _false_, _0_, _""_, _null_, _undefined_, y _NaN_.
+// Retornará false cuando el valor sea: false, 0, "", null, undefined, y NaN.
 // Si no es ninguno de estos casos, entonces devolverá true.
-// Tiene sentido usarlo para evaluar expressiones que no son booleanas.
+// Tiene sentido usarlo para evaluar expresiones que no son booleanas.
 let foo;
 if (!!foo) { // 'Result is false' Dado que el valor de foo es null.
 	console.log('Result is true');
