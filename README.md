@@ -629,15 +629,10 @@ if (a.indexOf("NyanCat") === -1) {
 function isBigEnough(value) {
   return value >= 10;
 }
-var filtered = [12, 5, 8, 130, 44].filter(isBigEnough); // filtered is [12, 130, 44]
-
 
 var numbers = [12, 5, 8, 130, 44];
-var filteredNumbers = numbers.filter(
-		function(oneNumber) {
-			return oneNumber >= 10;
-		}
-	); // filteredNumbers is [12, 130, 44]
+
+var filteredNumbers = numbers.filter(isBigEnough); // filteredNumbers is [12, 130, 44]
 ```
 
 * Uso de: _array.map_ (crea un nuevo array a partir de realizar una función en cada uno de los elementos del array original)
@@ -658,28 +653,14 @@ var doubleNums = nums.map(
 * Uso de: _array.forEach_ (recorre el array aplicando una función a cada elemento)
 ```javascript
 var a = ['a', 'b', 'c'];
-
 a.forEach(function(element) {
 	console.log(element);
 });
-
-
-var arrayOfObjects = [ { "id": 3, "name": "Laura"}, { "id": 8, "name": "Javier"}]
-var results = "";
-arrayOfObjects.forEach(
-	function(objectInArray){
-		return results += objectInArray["name"];
-	}
-);
-console.log(results); // "LauraJavier"
-
-
 
 // Otra manera de implementarlo:
 function fooFunction(currentValue,index,array) {
 	// ...
 }
-
 a.forEach(fooFunction, this); // Podemos nombrar la función en vez de declararla dentro del forEach.
 // Adicionalmente, podemos pasarle el objeto 'this' a la función.
 ```
