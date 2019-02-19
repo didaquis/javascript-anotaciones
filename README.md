@@ -956,21 +956,21 @@ console.error("Algo salió mal");
 
 * Un pequeño truco para saber con que tipo de objeto trabajamos:
 ```javascript
-function typeOf (element){
+function whatTypeIs (element){
 	return Object.prototype.toString.call(element).slice(8,-1);
 }
 
-console.log( typeOf( ["A", "B"] ) ); // "Array"
-console.log( typeOf( "foo" ) ); // "String"
-console.log( typeOf( 4 ) ); // "Number"
-console.log( typeOf( /[a]/g ) ); // "RegExp"
-console.log( typeOf( new Set() ) ); // "Set"
-console.log( typeOf( new Map() ) ); // "Map"
-console.log( typeOf( () => {} ) ); // "Function"
-console.log( typeOf( null ) ); // "Null"
-console.log( typeOf( undefined ) ); // "Undefined"
-console.log( typeOf( NaN ) ); // "Number"
-console.log( typeOf( new Date ) ); // "Date"
+console.log( whatTypeIs( ["A", "B"] ) ); // "Array"
+console.log( whatTypeIs( "foo" ) ); // "String"
+console.log( whatTypeIs( 4 ) ); // "Number"
+console.log( whatTypeIs( /[a]/g ) ); // "RegExp"
+console.log( whatTypeIs( new Set() ) ); // "Set"
+console.log( whatTypeIs( new Map() ) ); // "Map"
+console.log( whatTypeIs( () => {} ) ); // "Function"
+console.log( whatTypeIs( null ) ); // "Null"
+console.log( whatTypeIs( undefined ) ); // "Undefined"
+console.log( whatTypeIs( NaN ) ); // "Number"
+console.log( whatTypeIs( new Date ) ); // "Date"
 ```
 
 * JSON.stringify fáciles de leer. Puedes usar el tercer parámetro para espicificar el tipo de indentación:
