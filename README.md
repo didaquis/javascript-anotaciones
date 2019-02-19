@@ -1007,6 +1007,14 @@ JSON.stringify(person, null, '\t'); // Indentación: tabulador
 */
 ```
 
+* Revisar el código de una función:
+```javascript
+function someFunction(){
+	// ...
+};
+console.log( someFunction.toString() );
+```
+
 
 ----------------------------------------------------------
 ## De callback hell a promesas:
