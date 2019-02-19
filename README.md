@@ -401,6 +401,14 @@ class Utilities {
 		setTimeout(callback, miliseconds);
 	}
 
+	static pause(miliseconds) {
+		const start = Date.now();
+		let now = start;
+		while (now - start < miliseconds) {
+			now = Date.now();
+		}
+	}
+
 	static generateToken() {
 		const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-$';
 		let rand, i;
@@ -427,6 +435,8 @@ Utilities.delay(3000, function () {
 }); // 'delayed output', tres segundos después
 
 Utilities.generateToken(); // 'DyvlJ_mhQ8X'
+
+Utilities.pause(2000); // Stop the execution of JavaScript for the specified time
 ```
 
 * Herencia:
