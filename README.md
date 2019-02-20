@@ -386,7 +386,7 @@ class Utilities {
 	static generateRandomInteger() {
 		// Esto es un método estático. 
 		// Permite ser llamado sin necesidad de instanciar la clase.
-		return Math.floor(Math.random() * 11); // retorna numero entero aleatorio entre 0 y 10
+		return Math.floor(Math.random() * 11); // retorna número entero aleatorio entre 0 y 10
 	}
 
 	static coinToss() {
