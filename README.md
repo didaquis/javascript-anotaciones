@@ -155,9 +155,13 @@ createMenu({
 // ¿Sabríamos entender que significa el true en la segunda llamada? Probablemente no!
 
 // Podemos hacer lo siguiente si todos los parámetros son opcionales:
-function findUser({ id, username } = {}) {
+function createUser({ username = 'Anonymous' } = {}) {
 	// ...
 }
+// de esta manera podemos llamar a la función así:
+createUser();
+
+// Observa que si nuestras funciones también retornan objetos, estás usando el patrón RORO (receive object, return object).
 ```
 
 * Self Invoking Functions, también llamadas IIFE (Immediately Invoked Function Expression):
