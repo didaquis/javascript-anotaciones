@@ -12,6 +12,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Singleton](#singleton)
 - [Tratamiento de arrays](#tratamiento-de-arrays)
 - [Tratamiento de strings](#tratamiento-de-strings)
+- [Regular expressions](#regular-expressions)
 - [Objetos](#objetos)
 - [Set](#set)
 - [Map](#map)
@@ -716,13 +717,6 @@ var extract = text.match(/\{\{(.+?)\}\}/g);
 console.log(extract); // ["{{name}}", "{{age}}"]
 ```
 
-* Uso de: _string.search_ (retorna un boolean si encuentra una coincidencia en el string con el patrón indicado)
-```javascript
-var str = "The best things in life are free";
-var pattern = new RegExp(/life/g);
-var res = pattern.test(str); // true
-```
-
 * Diferencias entre _string.substr_ y _string.substring_ (ambos métodos retornan un nuevo string a partir del original, pero observa la diferencia de resultados):
 ```javascript
 var text = "Example";
@@ -746,6 +740,17 @@ console.log( "hello".split("") ); // ["h", "e", "l", "l", "o"]
 var text = "Add the potato please, I always prefer more potato";
 text = text.split("potato").join("cheese");
 // Sustituye "potato" por "cheese" en todas las apariciones que haya en "text"
+```
+
+----------------------------------------------------------
+## Regular expressions:
+
+* Uso de: _regexObj.search_ (retorna un boolean si encuentra una coincidencia en el string dado)
+
+```javascript
+var str = "The best things in life are free";
+var pattern = new RegExp(/life/g);
+var res = pattern.test(str); // true
 ```
 
 ----------------------------------------------------------
