@@ -14,6 +14,8 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Tratamiento de strings](#tratamiento-de-strings)
 - [Regular expressions](#regular-expressions)
 - [Objetos](#objetos)
+- [Namespaces](#namespaces)
+- [Proxies](#proxies)
 - [Set](#set)
 - [Map](#map)
 - [Debugging y console](#debugging-y-console)
@@ -824,6 +826,78 @@ function deepClone(originalObject) {
 }
 
 const newObject = deepClone(originalObject);
+```
+
+----------------------------------------------------------
+## Namespaces:
+
+Podemos agrupar funciones y valores en un namespace. Esto nos permite organizar mejor nuestro código. Existen diferentes máneras de obtener este resultado, una de ellas es usar namespaces.
+
+* Namespaces con objetos literales:
+```javascript
+const myApplication = {
+	version: '1.0',
+	name: 'my application',
+	config: {
+		url: '127.0.0.1',
+		port: 3000
+	},
+	init: function() {
+		// ....
+	}
+};
+```
+
+* Namespaces con IIFE (immediatly invoked function expression):
+```javascript
+const myApplication = {};
+
+(function(){
+	let _protocol = 'https'; // esto es una variable "privada", no es accesible desde fuera del scope.
+
+	this.version = '1.2',
+	this.name = 'myApplication',
+	this.config = {
+		url: '127.0.0.1',
+		port: 3000,
+		protocol: _protocol
+	},
+	this.init = function() {
+		//...
+	}
+}).apply(myApplication);
+```
+
+----------------------------------------------------------
+## Proxies:
+El objeto Proxy se usa para definir un comportamiento personalizado para operaciones fundamentales (por ejemplo, para observar propiedades, cuando se asignan, enumeración, invocación de funciones, etc)
+
+* Ejemplo de uso básico de proxies:
+```javascript
+let product;
+
+(function () {
+    let _price = 0;
+
+    product = {};
+
+	// Podemos definir unos proxies para acceder a la propiedad 'price'.
+	// Los proxies son muy útiles para hacer validaciones. Por ejemplo en el método 'set'. En este caso, estamos "interceptando" el acceso a la lectura y escritura de la propiedad 'price'.
+    Object.defineProperty(product, 'price', {
+        set: function (price) {
+            _price = price;
+        },
+
+        get: function () {
+            return _price;
+        }
+    });
+})();
+
+product.price = 100; // al hacer esto, accionamos el proxie 'set'
+
+// En la siguiente linea accionamos el proxie 'get'
+console.log(product.price); // 100
 ```
 
 ----------------------------------------------------------
