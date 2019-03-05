@@ -221,7 +221,7 @@ smurfy.setColor('black');
 console.log( smurfy.getColor() ); // 'black'
 
 
-// Otro ejemplo potenciando el uso de "clousures"
+// Otro ejemplo potenciando el uso de "closures"
 const makeCounter = function() {
 	// propiedades privadas
 	let count = 0;
