@@ -15,6 +15,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Regular expressions](#regular-expressions)
 - [Objetos](#objetos)
 - [Namespaces](#namespaces)
+- [Closures](#closures)
 - [Proxies](#proxies)
 - [Set](#set)
 - [Map](#map)
@@ -224,15 +225,15 @@ console.log( smurfy.getColor() ); // 'black'
 // Otro ejemplo potenciando el uso de "closures"
 const makeCounter = function() {
 	// propiedades privadas
-	let count = 0;
+	let _count = 0;
 
 	// métodos privados
 	const changeBy = (val) => {
-		count += val;
+		_count += val;
 	}
 
 	// definimos los métodos publicos
-	return {
+	return Object.freeze({
 		increment: function() {
 			changeBy(1);
 		},
@@ -240,9 +241,9 @@ const makeCounter = function() {
 			changeBy(-1);
 		},
 		getValue: function() {
-			return count;
+			return _count;
 		}
-	}
+	})
 };
 
 const Counter1 = makeCounter();
@@ -866,6 +867,32 @@ const myApplication = {};
 		//...
 	}
 }).apply(myApplication);
+```
+
+----------------------------------------------------------
+## Closures:
+
+* Podemos usar closures para organizar nuestro código. Un sencillo ejemplo con IIFE functions que nos permite crear un "módulo", una interesante alternativa a un namespace:
+```javascript
+const geoModule = (function() {
+	const _pi = 3.141592; // propiedad privada
+	const _info = 'This is a module for doing geometrical calculations';
+
+	const circleArea = (radius) => {
+		if (!Number(radius)) throw new Error('You must provide a radius value');
+
+		return _pi * radius * radius;
+	};
+
+	// definimos que métodos y que propiedades son accesibles públicamente
+	return Object.freeze({
+		calculateCircleArea: circleArea,
+		information: _info
+	})
+})();
+
+geoModule.calculateCircleArea(5); // 78.5398
+geoModule.information; // 'This is a module for doing geometrical calculations'
 ```
 
 ----------------------------------------------------------
