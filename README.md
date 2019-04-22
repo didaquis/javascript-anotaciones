@@ -417,6 +417,10 @@ class Utilities {
 		}
 	}
 
+	static wait(timeout) {
+		return new Promise(resolve => setTimeout(resolve, timeout));
+	}
+
 	static generateToken() {
 		const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-$';
 		let rand, i;
@@ -445,6 +449,14 @@ Utilities.delay(3000, function () {
 Utilities.generateToken(); // 'DyvlJ_mhQ8X'
 
 Utilities.pause(2000); // Stop the execution of JavaScript for the specified time
+
+// wait() example:
+Utilities.wait(5000).then(() => doSomething());
+
+// or even...
+await Utilities.wait(5000);
+doSomething();
+
 ```
 
 * Herencia:
