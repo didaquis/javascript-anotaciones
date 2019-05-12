@@ -1315,6 +1315,12 @@ async function foo(things) {
 }
 ```
 
+* Averiguar si una función es asíncrona (async):
+```javascript
+const isAsync = fooFunction.constructor.name === "AsyncFunction";
+```
+
+
 ----------------------------------------------------------
 
 ## setTimeout:
