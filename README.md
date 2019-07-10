@@ -1081,9 +1081,25 @@ var foo = "AWESOME";
 console.log('%c' + foo, 'color: yellow; background-color: black;');
 ```
 
-* Uso de _console.error_:
+* Uso de _console.time()_ para medir tiempos de ejecución:
 ```javascript
-console.error("Algo salió mal");
+console.time('Timer A');
+
+for (let i = 0; i < 999999; i++) {
+	// Para obtener una medición fiable, quizás necesites usar un bucle para maximizar los resultados
+}
+
+console.timeLog('Timer A');
+
+let i = 0
+while (i < 999999) {
+	i++;
+}
+
+console.timeEnd('Timer A');
+
+// Timer A: 4.47607421875ms
+// Timer A: 9.0048828125ms
 ```
 
 * Un pequeño truco para saber con que tipo de objeto trabajamos:
