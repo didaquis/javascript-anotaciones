@@ -678,6 +678,10 @@ var doubleNums = nums.map(
 	}
 );
 // doubleNums is now [2, 4, 6]
+ 
+
+// Trick!
+['1', 2, '3', 4, '5'].map(Number); // [1, 2, 3, 4, 5]
 ```
 
 * Uso de: _array.forEach_ (recorre el array aplicando una función a cada elemento)
