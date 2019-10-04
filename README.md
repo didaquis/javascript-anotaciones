@@ -1372,15 +1372,25 @@ const isAsync = fooFunction.constructor.name === "AsyncFunction";
 
 // selectores:
 document.querySelector('.foo'); // obtener el primer elemento dentro del documento que coincida con el selector
-
 document.querySelectorAll('.foo'); // Obtener una lista de elementos
 
 // otros selectores:
 const biz = document.querySelector('.biz');
 const children = biz.childNodes; // obtener los hijos de un nodo
 const parent = biz.parentNode; // obtener el padre de un nodo
-const prevSibling = biz.previousSibling; // obtener el hermano anterior a un nodo
-const nextSibling = biz.nextSibling; // obtener el hermano siguiente a un nodo
+
+biz.classList.add('.is-active'); // añadir una clase a un elemento
+biz.classList.remove('.hidden'); // quitar una clase a un elemento
+biz.classList.toggle('.dark-mode'); // alternar una clase a un elemento
+biz.classList.contains('.black-text'); // comprobar si un elemento tienen una clase
+
+// crear un elemento e insertarlo en el DOM
+const newChildElement = document.createElement('p');
+const newChildElement.innerText = 'Example!';
+biz.appendChild(newChildElement);
+
+// eliminar un nodo del DOM
+biz.remove();
 ```
 
 ----------------------------------------------------------
