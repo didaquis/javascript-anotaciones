@@ -24,6 +24,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Promesas](#promesas)
 - [Async-Await](#async-await)
 - [setTimeout](#setTimeout)
+- [DOM](#dom)
 
 
 ----------------------------------------------------------
@@ -1360,6 +1361,26 @@ const isAsync = fooFunction.constructor.name === "AsyncFunction";
 
 	setTimeout(loop, 2000);
 })();
+```
+
+----------------------------------------------------------
+
+## DOM:
+
+* Trabajando con el DOM:
+```javascript
+
+// selectores:
+document.querySelector('.foo'); // obtener el primer elemento dentro del documento que coincida con el selector
+
+document.querySelectorAll('.foo'); // Obtener una lista de elementos
+
+// otros selectores:
+const biz = document.querySelector('.biz');
+const children = biz.childNodes; // obtener los hijos de un nodo
+const parent = biz.parentNode; // obtener el padre de un nodo
+const prevSibling = biz.previousSibling; // obtener el hermano anterior a un nodo
+const nextSibling = biz.nextSibling; // obtener el hermano siguiente a un nodo
 ```
 
 ----------------------------------------------------------
