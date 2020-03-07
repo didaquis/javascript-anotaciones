@@ -1359,14 +1359,26 @@ await sendEmail(owner.email, 'Some text');
 
 // Ejemplo 5:
 async function foo(things) {
-	const results = [];
+	const listOfpromises = [];
 	for (let thing of things) { // use "for ... of" in arrays or sets; use "for ... in" in objects
 		// good: all asynchronous operations are inmediately started
-		results.push( asyncFooFunction(thing) );
+		listOfpromises.push( asyncFooFunction(thing) );
 	}
 
 	// now that all the asynchronous operations are running, here we wait until they all complete
-	return await Promise.all(results);
+	return await Promise.all(listOfpromises);
+}
+```
+
+* Averiguar si una función es asíncrona (async):
+```javascript
+const isAsync = fooFunction.constructor.name === "AsyncFunction";
+
+
+// Ejemplo 6 (llamadas asíncronas en paralelo):
+async function parallelApiCalls() {
+	const [firstResult, secondResult] = await Promise.all([fetchFirst(), fetchSecond()]); // si una falla, no se espera a que complete el resto
+	return [firstResult, secondResult];
 }
 ```
 
