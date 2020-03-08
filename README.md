@@ -1368,11 +1368,6 @@ async function foo(things) {
 	// now that all the asynchronous operations are running, here we wait until they all complete
 	return await Promise.all(listOfpromises);
 }
-```
-
-* Averiguar si una función es asíncrona (async):
-```javascript
-const isAsync = fooFunction.constructor.name === "AsyncFunction";
 
 
 // Ejemplo 6 (llamadas asíncronas en paralelo):
@@ -1381,6 +1376,7 @@ async function parallelApiCalls() {
 	return [firstResult, secondResult];
 }
 ```
+
 
 * Averiguar si una función es asíncrona (async):
 ```javascript
