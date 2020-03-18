@@ -509,13 +509,13 @@ console.log(square.getInfo()); // I am a cheeky square!
 
 * Ejemplo de singleton pattern usando clases de ES6:
 ```javascript
-class Singleton {
+class Item {
 	constructor(){
-		if (!Singleton.instance) {
+		if (!Item.instance) {
 			this._data = [];
-			Singleton.instance = this;
+			Item.instance = this;
 		}
-		return Object.freeze(Singleton.instance);
+		return Object.freeze(Item.instance);
 	}
 
 	// Methods
@@ -529,14 +529,14 @@ class Singleton {
 }
 
 // Puedes exportar esta clase como un módulo:
-// module.exports = Singleton;
+module.exports = Item;
 
 // Impórtalo así:
-// const Singleton = require('./Singleton');
-// const foo = new Singleton();
+const Item = require('./Item');
+const foo = new Item();
 
-let first = new Singleton();
-let second = new Singleton();
+let first = new Item();
+let second = new Item();
 
 first.add( { id: 1, name: 'john' } );
 first.add( { id: 2, name: 'louis' } );
