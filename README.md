@@ -842,9 +842,15 @@ function deepClone(originalObject) {
 	}
 	return clonedObject;
 }
-
 const newObject = deepClone(originalObject);
+
+
+// método alternativo:
+const obj = { a: 1 };
+const copy = Object.assign({}, obj);
+console.log(copy); // { a: 1 }
 ```
+
 
 * Iterar un objeto:
 ```javascript
