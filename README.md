@@ -7,9 +7,9 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Operadores](#operadores)
 - [Condicionales](#condicionales)
 - [Funciones, parámetros y argumentos](#funciones-parámetros-y-argumentos)
-- [Clases en ES5](#clases-en-es5)
 - [Clases en ES6](#clases-en-es6)
-- [Singleton](#singleton)
+- [Clases en ES2019](#clases-en-es2019)
+- [Singleton (ES6 clase)](#singleton-es6-clase)
 - [Tratamiento de arrays](#tratamiento-de-arrays)
 - [Tratamiento de strings](#tratamiento-de-strings)
 - [Regular expressions](#regular-expressions)
@@ -117,15 +117,6 @@ sayHi('samantha'); // 👈 argument
 
 * _arguments_ (array de argumentos que se le pasan a una función):
 ```javascript
-function printArguments(){
-	for(var j = 0; j < arguments.length; j++){
-		console.log(arguments[j]);
-	}
-}
-printArguments(3712,7123);
-
-
-// ES6 Style
 function printArgumentsES6(...arg){
 	arg.forEach((a) => console.log(a));
 }
@@ -139,24 +130,10 @@ function printArgumentsES6ForOf(){
 printArgumentsES6ForOf(3712,7123);
 
 
-// ES6 Style
 function food(...arg){
 	const [egg, cheese] = args;
 }
 food('🥚', '🧀');
-```
-
-* Establecer un valor por defecto a los argumentos de una función (ES5). Si no pasamos un parámetro, JavaScript lo interpreta como "undefined":
-```javascript
-function valorPorDefectoEnUnArgumento(txt){
-	// siempre que "txt" sea "undefined", "txt" será igual a "valor por defecto"
-	txt = txt || "valor por defecto";
-	
-	console.log(txt);
-}
-
-valorPorDefectoEnUnArgumento("foo"); // "foo"
-valorPorDefectoEnUnArgumento(); // "valor por defecto"
 ```
 
 * Uso de destructuring para mejorar la legibilidad del siginificado de los parámetros que mandamos a una función:
@@ -320,27 +297,6 @@ connection.modifySettings( { ip: '192.168.2.11' } );
 console.log( connection.getSettings() ); // {ip: "192.168.2.11", port: "8080", method: "http"}
 ```
 
-
-----------------------------------------------------------
-## Clases en ES5
-
-* Ejemplo de clase en ES5:
-```javascript
-function Person(name) {
-	this.name = name;
-
-	this.salute = function() {
-		console.log("Hello, my name is " + this.name);
-	}
-}
-
-var john_doe = new Person("John Doe"); // Observa que estoy usando "new" !!
-john_doe.salute(); // Hello, my name is John Doe
-
-console.log(john_doe instanceof Person); // true
-console.log(john_doe instanceof Object); // true
-```
-
 ----------------------------------------------------------
 ## Clases en ES6
 
@@ -406,7 +362,7 @@ console.log( car.getCarInfo() ); // {brand: "Ford", model: "Fiesta", color: "pin
 ```
 
 
-* Métodos estáticos:
+* Métodos estáticos (nos permite usar esos métodos sin generar la instancia de la clase):
 ```javascript
 class Utilities {
 	static generateRandomInteger() {
@@ -520,9 +476,42 @@ console.log(square instanceof Rectangle); // true. Recuerda que Square extiende 
 console.log(square.getInfo()); // I am a cheeky square!
 ```
 
+----------------------------------------------------------
+## Clases en ES2019
+
+* Ejemplo de clase en ES2019:
+```javascript
+class MyES2019Class {
+	// ya no es necesario el constructor para declarar las propiedades públicas (pero puedes usarlo si lo necesitas).
+
+	x = 1; // public property
+
+	#counter = 0; // private property
+
+  	static z = 3; // static property
+
+	incB() {
+    	this.#counter++;
+  	}
+
+	getCounter () {
+    	return this.#counter
+  	}
+
+}
+
+let foo = new MyES2019Class();
+
+foo.incB(); // runs OK
+foo.#counter = 7; // error - private property cannot be modified outside class
+foo.#counter; // error - private property cannot be modified outside class
+foo.counter; // undefined
+
+foo.getCounter(); // 1
+```
 
 ----------------------------------------------------------
-## Singleton:
+## Singleton (ES6 clase):
 
 * Ejemplo de singleton pattern usando clases de ES6:
 ```javascript
