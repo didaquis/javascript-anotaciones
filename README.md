@@ -42,7 +42,7 @@ var a = 1, b = 2;
 
 * Operador lógico _OR_ (evalua de izquierda a derecha las expresiones y retorna la primera de ellas evaluable como "truthy". Si todas se evaluan como "falsy", retorna _false_. Todos los valores son "truthy", excepto: _false_, _0_, _""_, _null_, _undefined_, y _NaN_)
 ```javascript
-var foo = false || ':-)'; // ':-)'
+var foo = false || '🙂'; // '🙂'
 
 var bar = 3 || false; // 3
 
@@ -277,6 +277,7 @@ console.log(Counter1.getValue()); // 1
 
 console.log(Counter2.getValue()); // 0
 ```
+
 Otro ejemplo de _Factory Functions_ más avanzado:
 ```javascript
 // Ejemplo avanzado de Factory Function:
