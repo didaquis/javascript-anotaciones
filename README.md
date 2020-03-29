@@ -6,7 +6,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Declaración de variables](#declaracion-de-variables)
 - [Operadores](#operadores)
 - [Condicionales](#condicionales)
-- [Funciones y argumentos](#funciones-y-argumentos)
+- [Funciones, parámetros y argumentos](#funciones-parámetros-y-argumentos)
 - [Clases en ES5](#clases-en-es5)
 - [Clases en ES6](#clases-en-es6)
 - [Singleton](#singleton)
@@ -104,7 +104,16 @@ if (criteria.includes(fruit)) {
 ```
 
 ----------------------------------------------------------
-## Funciones y argumentos:  
+## Funciones, parámetros y argumentos:  
+
+* Parámetros vs argumentos. Un parámetro es una variable en la declaración de la función. Un parámetro es el valor que le pasas a una función en el momento de ser llamada:
+```javascript
+function sayHi(name) { // 👈 parameter
+}
+
+sayHi('samantha'); // 👈 argument
+```
+
 
 * _arguments_ (array de argumentos que se le pasan a una función):
 ```javascript
@@ -128,6 +137,13 @@ function printArgumentsES6ForOf(){
 	}
 }
 printArgumentsES6ForOf(3712,7123);
+
+
+// ES6 Style
+function food(...arg){
+	const [egg, cheese] = args;
+}
+food('🥚', '🧀');
 ```
 
 * Establecer un valor por defecto a los argumentos de una función (ES5). Si no pasamos un parámetro, JavaScript lo interpreta como "undefined":
