@@ -892,6 +892,14 @@ Object.getOwnPropertyNames(obj).forEach( key => {
 })
 ```
 
+* Crea un objeto literal a partir de los parámetros de una URL:
+```javascript
+// On this URL: https://example.com/index.php?foo=foo&bar=bar
+
+Object.fromEntries([...new URL(location).searchParams]); // {foo: "foo", bar: "bar"}
+```
+
+
 ----------------------------------------------------------
 ## Namespaces:
 
