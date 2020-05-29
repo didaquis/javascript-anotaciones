@@ -90,11 +90,12 @@ if (!!foo) { // 'Result is false' Dado que el valor de foo es null.
 
 * Nullish coalescing operator (??):
 ```javascript
-// Node.js 14 required
+// Node.js 14 required (ES2020)
 
 0 ?? 'default' // 0
 '' ?? 'default' // ''
 false ?? 'default' // false
+NaN ?? 'default' // NaN
 null ?? 'default' // 'default'
 undefined ?? 'default' // 'default'
 undefined ?? null // null
@@ -103,7 +104,7 @@ null ?? undefined // undefined
 
 * Optional chaining operator (?.):
 ```javascript
-// Node.js 14 required
+// Node.js 14 required (ES2020)
 const object = { id: 123, names: { first: 'Alice', last: 'Smith' }};
 const firstName = object?.names?.first; // 'Alice'
 const home = object?.address?.home; // undefined
