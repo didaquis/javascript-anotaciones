@@ -88,6 +88,31 @@ if (!!foo) { // 'Result is false' Dado que el valor de foo es null.
 !!NaN // false
 ```
 
+* Nullish coalescing operator (??):
+```javascript
+// Node.js 14 required
+
+0 ?? 'default' // 0
+'' ?? 'default' // ''
+false ?? 'default' // false
+null ?? 'default' // 'default'
+undefined ?? 'default' // 'default'
+undefined ?? null // null
+null ?? undefined // undefined
+```
+
+* Optional chaining operator (?.):
+```javascript
+// Node.js 14 required
+const object = { id: 123, names: { first: 'Alice', last: 'Smith' }};
+const firstName = object?.names?.first; // 'Alice'
+const home = object?.address?.home; // undefined
+
+// En combinación con nullish coalescing operator:
+const middleName = object?.names?.middle ?? '(no middle name)'; // '(no middle name)'
+```
+
+
 ----------------------------------------------------------
 ## Condicionales:  
 
