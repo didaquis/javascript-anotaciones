@@ -110,6 +110,17 @@ const home = object?.address?.home; // undefined
 
 // En combinación con nullish coalescing operator:
 const middleName = object?.names?.middle ?? '(no middle name)'; // '(no middle name)'
+
+
+const user = {};
+alert(user.address.street); // Error!
+alert( user && user.address && user.address.street ); // undefined (no error)
+alert( user?.address?.street ); // undefined (no error)
+
+
+// the evaluation stops immediately after: car?.
+const car = null;
+alert( car?.motor.valves.anything ); // undefined
 ```
 
 
