@@ -541,7 +541,7 @@ let foo = new MyES2019Class();
 
 foo.incB(); // runs OK
 foo.#counter = 7; // error - private property cannot be modified outside class
-foo.#counter; // error - private property cannot be modified outside class
+foo.#counter; // error - private property cannot be read outside class
 foo.counter; // undefined
 
 foo.getCounter(); // 1
