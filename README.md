@@ -1250,6 +1250,12 @@ console.log( someFunction.toString() );
 ```
 
 
+* Utiliza esto en la consola del navegador para debuggear el CSS:
+```javascript
+$$('*').forEach((el) => el.style.border = '1px solid red');
+```
+
+
 ----------------------------------------------------------
 ## De callback hell a promesas:
 
