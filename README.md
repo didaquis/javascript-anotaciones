@@ -525,15 +525,15 @@ class MyES2019Class {
 
 	#counter = 0; // private property
 
-  	static z = 3; // static property
+	static z = 3; // static property
 
 	incB() {
-    	this.#counter++;
-  	}
+		this.#counter++;
+	}
 
 	getCounter () {
-    	return this.#counter
-  	}
+		return this.#counter
+	}
 
 }
 
