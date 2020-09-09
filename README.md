@@ -31,7 +31,10 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 ----------------------------------------------------------
 ## Versiones de JavaScript: 
 
-![js_version.png](./assets/js_version.png)
+![js_version.png](./assets/js_version.png)  
+
+### **Compatibilidades con Node.js**  
+ [https://node.green](https://node.green)
 
 ----------------------------------------------------------
 ## Declaración de variables:  
