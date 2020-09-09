@@ -3,6 +3,7 @@
 Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos interesantes para JavaScript.  
 
 ## Tabla de Contenido
+- [Versiones de JavaScript](#versiones-de-javascript)
 - [Declaración de variables](#declaracion-de-variables)
 - [Operadores](#operadores)
 - [Condicionales](#condicionales)
@@ -26,6 +27,11 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [setTimeout](#setTimeout)
 - [DOM](#dom)
 
+
+----------------------------------------------------------
+## Versiones de JavaScript: 
+
+![js_version.png](./assets/js_version.png)
 
 ----------------------------------------------------------
 ## Declaración de variables:  
