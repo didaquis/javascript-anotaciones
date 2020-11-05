@@ -1182,6 +1182,21 @@ for(var i = 0; i < 2; i++){
 }
 ```
 
+* Uso de _console.trace()_ para ver el stack:
+```javascript
+function foo() {
+	function biz(txt) {
+		console.trace(txt)
+	}
+	biz('example');
+}
+foo();
+
+// 'example'
+// biz @...
+// foo @...
+```
+
 * Uso de _console.log_ con estilos CSS:
 ```javascript
 var foo = "AWESOME";
