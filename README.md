@@ -527,6 +527,8 @@ console.log(square.getInfo()); // I am a cheeky square!
 
 * Ejemplo de clase en ES2019:
 ```javascript
+// Node.js 12.4 required
+
 class MyES2019Class {
 	// ya no es necesario el constructor para declarar las propiedades públicas (pero puedes usarlo si lo necesitas).
 
