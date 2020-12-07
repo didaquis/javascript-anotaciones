@@ -625,9 +625,9 @@ new Array(3).fill(0); // [0,0,0]
 function recursiveArrayClone(arrayToClone){
 	var clonedArray = [];
 	for (var i = 0; i < arrayToClone.length; i++) {
-		if( Array.isArray(arrayToClone[i]) ){
+		if ( Array.isArray(arrayToClone[i]) ) {
 			clonedArray.push( recursiveArrayClone(arrayToClone[i]) );
-		}else{
+		} else {
 			clonedArray.push(arrayToClone[i]);
 		}
 	}
@@ -924,19 +924,19 @@ for (let key in obj){
 
 // Otra opción!
 Object.keys(obj).forEach( key => {
-   console.log(`${key} : ${obj[key]}`);
+	console.log(`${key} : ${obj[key]}`);
 });
 
 
 // Si sólo nos interesan los valores
 Object.values(obj).forEach( value => {
-   console.log(value);
+	console.log(value);
 });
 
 
 // Esto incluye las propiedades non-enumerables
 Object.getOwnPropertyNames(obj).forEach( key => {
-    console.log(`${key}:${obj[key]}`);
+	console.log(`${key}:${obj[key]}`);
 })
 ```
 
@@ -1107,9 +1107,9 @@ biz.set('age', 53);
 console.log(biz.size); // 2
 
 for (let [key, value] of biz) {
-  console.log(`${key} => ${value}`);
-  // name => John
-  // age => 53
+	console.log(`${key} => ${value}`);
+	// name => John
+	// age => 53
 }
 
 console.log(biz.get('age')); // 53
