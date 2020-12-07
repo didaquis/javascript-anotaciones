@@ -623,8 +623,8 @@ new Array(3).fill(0); // [0,0,0]
  * @return {array} clonedArray. Retorna un nuevo array.
  */
 function recursiveArrayClone(arrayToClone){
-	var clonedArray = [];
-	for (var i = 0; i < arrayToClone.length; i++) {
+	let clonedArray = [];
+	for (let i = 0; i < arrayToClone.length; i++) {
 		if ( Array.isArray(arrayToClone[i]) ) {
 			clonedArray.push( recursiveArrayClone(arrayToClone[i]) );
 		} else {
@@ -637,7 +637,7 @@ function recursiveArrayClone(arrayToClone){
 
 * Vaciar un array
 ```javascript
-var myArray = ['a', 'b', 'c'];
+const myArray = ['a', 'b', 'c'];
 myArray.length = 0;
 console.log(myArray); // []
 ```
@@ -652,21 +652,21 @@ console.log(arrayFiltered); // ["0", "example"]
 
 * Uso de: _array.join_ (retorna un string)
 ```javascript
-var a = ['Wind', 'Rain', 'Fire'];
+let a = ['Wind', 'Rain', 'Fire'];
 a.join();      // 'Wind,Rain,Fire'
 a.join('');    // 'WindRainFire'
 
 
-var text = "Add the potato please, I always prefer more potato";
+let text = "Add the potato please, I always prefer more potato";
 text = text.split("potato").join("cheese");
 // Sustituye "potato" por "cheese" en todas las apariciones que haya en "text"
 ```
 
 * Uso de: _array.concat_ (crea un nuevo array con la concatenación de 2 o más arrays)
 ```javascript
-var arr1 = ['a', 'b', 'c'];
-var arr2 = ['d', 'e', 'f'];
-var arr3 = arr1.concat(arr2); // arr3 is a new array [ "a", "b", "c", "d", "e", "f" ]
+const arr1 = ['a', 'b', 'c'];
+const arr2 = ['d', 'e', 'f'];
+const arr3 = arr1.concat(arr2); // arr3 is a new array [ "a", "b", "c", "d", "e", "f" ]
 ```
 
 * Uso de: _array.slice_ (crea una copia del array pero quitando, o no, algunos elementos del original)
@@ -715,9 +715,9 @@ function isBigEnough(value) {
 	return value >= 10;
 }
 
-var numbers = [12, 5, 8, 130, 44];
+const numbers = [12, 5, 8, 130, 44];
 
-var filteredNumbers = numbers.filter(isBigEnough); // filteredNumbers is [12, 130, 44]
+const filteredNumbers = numbers.filter(isBigEnough); // filteredNumbers is [12, 130, 44]
 ```
 
 * Uso de: _array.map_ (crea un nuevo array a partir de realizar una función en cada uno de los elementos del array original)
@@ -756,15 +756,15 @@ a.forEach(fooFunction, this); // Podemos nombrar la función en vez de declararl
 
 * Uso de: _array.reduce_ (aplica una función a un acumulador y a cada valor de un array (de izquierda a derecha) para reducirlo a un único valor.)
 ```javascript
-cart = [ {ref: "yuh", price: 23}, {ref: "jum", price: 44} ];
-var result = cart.reduce(function(accum, v){
+const cart = [ {ref: "yuh", price: 23}, {ref: "jum", price: 44} ];
+const result = cart.reduce(function(accum, v){
 	return accum + v.price;
 },0); // en este caso, el 0 es el acumulador.
 console.log(result); // 67
 
 
-var arrayOfBooleans = [true, false, true, true];
-var totalOfTrues = arrayOfBooleans.reduce( function(accumulator, arrayElement){
+const arrayOfBooleans = [true, false, true, true];
+const totalOfTrues = arrayOfBooleans.reduce( function(accumulator, arrayElement){
 			return arrayElement ? ++accumulator : accumulator;
 		},0
 	);
