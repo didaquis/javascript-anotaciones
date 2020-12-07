@@ -705,14 +705,14 @@ a.indexOf("bar"); // 1
 a.indexOf("NyanCat"); // -1
 
 if (a.indexOf("NyanCat") === -1) {
-  // element doesn't exist in array
+	// element doesn't exist in array
 }
 ```
 
 * Uso de: _array.filter_ (crea un nuevo array a partir de otro con aquellos elementos que pasan el filtro especificado)
 ```javascript
 function isBigEnough(value) {
-  return value >= 10;
+	return value >= 10;
 }
 
 var numbers = [12, 5, 8, 130, 44];
