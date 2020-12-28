@@ -152,7 +152,7 @@ if (criteria.includes(fruit)) {
 ----------------------------------------------------------
 ## Funciones, parámetros y argumentos:  
 
-* Parámetros vs argumentos. Un parámetro es una variable en la declaración de la función. Un parámetro es el valor que le pasas a una función en el momento de ser llamada:
+* Parámetros vs argumentos. Un parámetro es una variable en la declaración de la función. Un argumento es el valor que le pasas a una función en el momento de ser llamada:
 ```javascript
 function sayHi(name) { // 👈 parameter
 }
