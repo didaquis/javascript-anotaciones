@@ -1224,13 +1224,14 @@ console.timeEnd('Timer A');
 // Timer A: 9.0048828125ms
 ```
 
-* Un pequeño truco para saber con que tipo de objeto trabajamos:
+* Un pequeño truco para saber con que tipo (primitivo o no) trabajamos:
 ```javascript
-function whatTypeIs (element){
-	return Object.prototype.toString.call(element).slice(8,-1);
+function whatTypeIs (type){
+	return Object.prototype.toString.call(type).slice(8,-1);
 }
 
 console.log( whatTypeIs( ["A", "B"] ) ); // "Array"
+console.log( whatTypeIs( {} ) ); // "Object"
 console.log( whatTypeIs( "foo" ) ); // "String"
 console.log( whatTypeIs( 4 ) ); // "Number"
 console.log( whatTypeIs( /[a]/g ) ); // "RegExp"
