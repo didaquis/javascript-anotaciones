@@ -565,11 +565,11 @@ foo.getCounter(); // 1
 ```javascript
 class Item {
 	constructor(){
-		if (!Item.instance) {
-			this._data = [];
-			Item.instance = this;
+		if (Item.instance) {
+			return Object.freeze(Item.instance);
 		}
-		return Object.freeze(Item.instance);
+		this._data = [];
+		Item.instance = this;
 	}
 
 	// Methods
@@ -1242,6 +1242,7 @@ console.log( whatTypeIs( null ) ); // "Null"
 console.log( whatTypeIs( undefined ) ); // "Undefined"
 console.log( whatTypeIs( NaN ) ); // "Number"
 console.log( whatTypeIs( new Date ) ); // "Date"
+console.log( whatTypeIs( Promise.resolve() ) ); // "Promise"
 ```
 
 * JSON.stringify fáciles de leer. Puedes usar el tercer parámetro para espicificar el tipo de indentación:
