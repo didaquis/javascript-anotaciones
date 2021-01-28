@@ -442,14 +442,14 @@ class Utilities {
 	}
 
 	static generateToken() {
-		const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-$';
+		const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-';
 		let rand, i;
 		let bits = 64;
 		let result = '';
 		while (bits > 0) {
 			rand = Math.floor(Math.random() * 0x100000000); // 32-bit integer
 			// base 64 means 6 bits per character, so we use the top 30 bits from rand to give 30/6=5 characters.
-			for (i = 26; i > 0 && bits > 0; i -= 6, bits -= 6) result += chars[0x3F & rand >>> i];
+			for (i = 26; i > 0 && bits > 0; i -= 6, bits -= 6) result += chars[0x3F & (rand >>> i)];
 		}
 		return result;
 	}
