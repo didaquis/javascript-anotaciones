@@ -418,7 +418,7 @@ class Utilities {
 	}
 
 	static coinToss() {
-		return Math.random() > .5; // retorna "true" o "false" de manera aleatoria
+		return Math.random() > 0.5; // retorna "true" o "false" de manera aleatoria
 	}
 
 	static capitalize(str) {
@@ -427,6 +427,11 @@ class Utilities {
 
 	static delay(miliseconds, callback) {
 		setTimeout(callback, miliseconds);
+	}
+
+	static trimToTwoDecimalPoints(number) {
+		const fixed = 2;
+		return ~~(Math.pow(10, fixed) * number) / Math.pow(10, fixed);
 	}
 
 	static pause(miliseconds) {
