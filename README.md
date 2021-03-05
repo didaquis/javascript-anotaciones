@@ -26,7 +26,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Async-Await](#async-await)
 - [setTimeout](#setTimeout)
 - [DOM](#dom)
-- [ECMAscript modules vs CommonJS modules on Node.js](#ecmascript-modules-vs-commonjs-modules-on-node.js)
+- [ECMAScript modules vs CommonJS modules on Node.js](#ecmascript-modules-vs-commonjs-modules-on-nodejs)
 
 
 ----------------------------------------------------------
@@ -1534,7 +1534,7 @@ biz.remove();
 
 ----------------------------------------------------------
 
-## ECMAscript modules vs CommonJS modules on Node.js
+## ECMAScript modules vs CommonJS modules on Node.js
 
 * A partir de Node.js 14 puedes usar los ECMAScript modules. Por defecto, los fichero se comportan como en `'strict mode;'`.
 
