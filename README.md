@@ -27,6 +27,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [setTimeout](#setTimeout)
 - [DOM](#dom)
 - [ECMAScript modules vs CommonJS modules on Node.js](#ecmascript-modules-vs-commonjs-modules-on-nodejs)
+- [Switch vs mapper](#switch-vs-mapper)
 
 
 ----------------------------------------------------------
@@ -1543,5 +1544,48 @@ biz.remove();
 ![ecmascript_commonjs_details.png](./assets/ecmascript_commonjs_details.png)  
 ![strict_mode.png](./assets/strict_mode.png)  
 
+
+----------------------------------------------------------
+
+## Switch vs mapper
+
+* Algunas veces es mejor usar un mapper que un switch. Observa esta implementación alternativa a un switch.
+```javascript
+// usando switch:
+function getPriceOfDrink(drink) {
+  const commonPrice = 2;
+  let tax;
+  switch(drink) {
+  case 'coke':
+    tax = 0.3;
+    break;
+  case 'pepsi':
+    tax = 0.2;
+    break;
+  default:
+    tax = 0;
+  }
+
+  return commonPrice + tax
+}
+
+getPriceOfDrink('coke'); // 2.3
+
+
+// usando un mapper:
+function getPriceOfDrink(drink) {
+  const commonPrice = 2;
+  const TAXES = {
+    'coke': 0.3,
+    'pepsi': 0.2
+  };
+  const DEFAULT_TAX = 0;
+
+  const tax = TAXES[drink] || DEFAULT_TAX;
+  return commonPrice + tax;
+}
+
+getPriceOfDrink('coke'); // 2.3
+```
 
 ----------------------------------------------------------
