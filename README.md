@@ -38,6 +38,9 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 ### **Compatibilidades con Node.js**  
  [https://node.green](https://node.green)
 
+### **Compatibilidades con navegadores (exceptuando IE11)**  
+* ES2017 está totalmente soportado en todos los navegadores principales de escritorio y móvil
+
 ----------------------------------------------------------
 ## Declaración de variables:  
 
