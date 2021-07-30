@@ -1540,7 +1540,7 @@ biz.remove();
 
 ## ECMAScript modules vs CommonJS modules on Node.js
 
-* A partir de Node.js 14 puedes usar los ECMAScript modules. Por defecto, los fichero se comportan como en `'strict mode;'`.
+* A partir de Node.js 14 puedes usar los ECMAScript modules. Por defecto, los ficheros se comportan como en `'strict mode;'`.
 
 
 ![ecmascript_commonjs.png](./assets/ecmascript_commonjs.png)  
