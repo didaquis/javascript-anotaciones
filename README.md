@@ -17,6 +17,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Objetos](#objetos)
 - [Namespaces](#namespaces)
 - [Closures](#closures)
+- [Curry functions](#curry-functions)
 - [Proxies](#proxies)
 - [Set](#set)
 - [Map](#map)
@@ -1023,6 +1024,11 @@ const geoModule = (function() {
 geoModule.calculateCircleArea(5); // 78.5398
 geoModule.information; // 'This is a module for doing geometrical calculations'
 ```
+
+----------------------------------------------------------
+## Curry functions:
+
+
 
 ----------------------------------------------------------
 ## Proxies:
