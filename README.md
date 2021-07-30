@@ -1028,7 +1028,27 @@ geoModule.information; // 'This is a module for doing geometrical calculations'
 ----------------------------------------------------------
 ## Curry functions:
 
+JavaScript es un lenguaje con "funciones de primera clase". Esto significa que el lenguaje soporta que tanto los argumentos como los valores de retorno puedan ser funciones. 
 
+Apoyándose en este concepto existen las "curry functions".  
+```js
+// Declaramos una curry function.
+const concatenate = (foo) => (bar) => `${foo} ${bar}`;
+
+// Ahora vamos a invocarla.
+concatenate('hola')('mundo'); // 'hola mundo'
+// Lo que ha ocurrido aquí es lo siguiente: 
+// Primero se ejecuta el paréntesis de más a la izquierda. El valor 'hola' se asigna al parámetro foo. Entonces se retorna la siguiente función: (bar) => `${'hola'} ${bar}`;
+// Luego se ejecuta el siguiente paréntesis, y el valor 'mundo' se asigna al parámentro bar. Por tanto se ejecuta esto: `${'hola'} ${'mundo'}`
+
+
+// Vamos a invocarla otra vez, para obtener otro ejemplo.
+const myFunction = concatenate('saludos'); // (bar) => `${'saludos'} ${bar}`
+// Fíjate que ha retornado una función, en la cual el parámetro foo ya ha sido asignado
+
+myFunction('terricola'); // 'saludos terricola'
+// Aquí se ha ejecutado la función que se había retornado previamente, y el argumento 'terricola' se asignó a la variable bar
+```
 
 ----------------------------------------------------------
 ## Proxies:
