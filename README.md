@@ -1038,11 +1038,11 @@ const concatenate = (foo) => (bar) => `${foo} ${bar}`;
 // Ahora vamos a invocarla.
 concatenate('hola')('mundo'); // 'hola mundo'
 // Lo que ha ocurrido aquí es lo siguiente: 
-// Primero se ejecuta el paréntesis de más a la izquierda. El valor 'hola' se asigna al parámetro foo. Entonces se retorna la siguiente función: (bar) => `${'hola'} ${bar}`;
+// Primero se ejecuta el paréntesis de más a la izquierda. El valor 'hola' se asigna al parámetro foo y se retorna la siguiente función: (bar) => `${'hola'} ${bar}`;
 // Luego se ejecuta el siguiente paréntesis, y el valor 'mundo' se asigna al parámentro bar. Por tanto se ejecuta esto: `${'hola'} ${'mundo'}`
 
 
-// Vamos a invocarla otra vez, para obtener otro ejemplo.
+// Para obtener otro ejemplo y que se entienda el concepto, vamos a invocar a la función nuevamente.
 const myFunction = concatenate('saludos'); // (bar) => `${'saludos'} ${bar}`
 // Fíjate que ha retornado una función, en la cual el parámetro foo ya ha sido asignado
 
