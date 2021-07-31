@@ -1050,6 +1050,43 @@ myFunction('terricola'); // 'saludos terricola'
 // Aquí se ha ejecutado la función que se había retornado previamente, y el argumento 'terricola' se asignó a la variable bar
 ```
 
+Veamos un ejemplo de uso más realista (inyectar dependencias en un controllador de Express):
+```js
+const { Router } = require('express');
+const router = Router();
+
+// Un servicio cualquiera:
+const fooService = () => 'It works!';
+
+// una curry function
+const controllerFactory = ({ service }) => (req, res, next) => {
+	try {
+		const result = service(); // service esta disponible en el escope gracias a la curry function
+		res.status(200).json({ data: result });
+	} catch (e) {
+		res.status(500).json({ error: e.message });
+	}
+};
+
+// Preparamos las dependencias a inyectar
+const injector = Object.freeze({
+	service: fooService
+});
+
+// invocamos a la curry function pasándole las dependencias
+router.get('/foo', controllerFactory(injector));
+
+/*
+	Observa que lo que conseguimos usando una curry function es inyectar una dependencia sin cambiar la firma de los parámetros del controlador. El controlador sigue recibiendo los 3 argumentos clásicos: req, res, next 
+*/
+
+
+/*
+	Otra manera de inyectar servicios a un controllador de Express sin usar una curry function sería mediante un middleware que los añadiera al objeto "request".
+*/
+```
+
+
 ----------------------------------------------------------
 ## Proxies:
 El objeto Proxy se usa para definir un comportamiento personalizado para operaciones fundamentales (por ejemplo, para observar propiedades, cuando se asignan, enumeración, invocación de funciones, etc)
