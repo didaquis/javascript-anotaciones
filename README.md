@@ -28,6 +28,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [setTimeout](#setTimeout)
 - [DOM](#dom)
 - [ECMAScript modules vs CommonJS modules on Node.js](#ecmascript-modules-vs-commonjs-modules-on-nodejs)
+- [unhandledRejection on Node.js](#unhandledrejection-on-nodejs)
 - [Switch vs mapper](#switch-vs-mapper)
 
 
@@ -1610,6 +1611,28 @@ biz.remove();
 ![ecmascript_commonjs_details.png](./assets/ecmascript_commonjs_details.png)  
 ![strict_mode.png](./assets/strict_mode.png)  
 
+
+----------------------------------------------------------
+
+## unhandledRejection on Node.js
+
+* Manera de capturar globalmente los errores de tipo `unhandledRejection`.
+```javascript
+import process from 'process';
+
+Promise.reject(new Error('patata')); // you should always return "new Error" when reject a promise
+
+process.on('unhandledRejection', (reason, promise) => {
+	const error = {
+		error: reason,
+		message: reason instanceof Error ? reason.message : reason,
+		stack: reason instanceof Error ? reason.stack : null,
+		promise
+	};
+
+	console.error(error);
+});
+```
 
 ----------------------------------------------------------
 
