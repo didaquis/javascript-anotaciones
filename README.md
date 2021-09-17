@@ -25,7 +25,8 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [De callback hell a promesas](#de-callback-hell-a-promesas)
 - [Promesas](#promesas)
 - [Async-Await](#async-await)
-- [setTimeout](#setTimeout)
+- [setTimeout](#settimeout)
+- [setInterval](#setinterval)
 - [DOM](#dom)
 - [ECMAScript modules vs CommonJS modules on Node.js](#ecmascript-modules-vs-commonjs-modules-on-nodejs)
 - [unhandledRejection on Node.js](#unhandledrejection-on-nodejs)
@@ -1568,6 +1569,36 @@ const isAsync = fooFunction.constructor.name === "AsyncFunction";
 
 	setTimeout(loop, 2000);
 })();
+```
+
+----------------------------------------------------------
+
+## setInterval:
+
+* Asegurarse de que solo un intérvalo está ejecutandose:
+```javascript
+let interval = null;
+
+function setClock() {
+	if (!interval) { // This prevent more than one callback at a time!!
+		const TEN_SECONDS = 10000;
+		interval = setInterval(() => {
+			console.log('hola')
+		}, TEN_SECONDS);
+	}
+}
+
+setClock(); // start the interval
+setClock(); // this second call does not set a second interval
+
+
+// The correct way to stop the interval
+function unsetClock() {
+	clearInterval(interval);
+	interval = null;
+}
+
+unsetClock()
 ```
 
 ----------------------------------------------------------
