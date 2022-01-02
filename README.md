@@ -433,8 +433,8 @@ class Utilities {
 		return str.charAt(0).toUpperCase() + str.slice(1); // retorna un string poniendo en mayúscula la primera letra
 	}
 
-	static delay(miliseconds, callback) {
-		setTimeout(callback, miliseconds);
+	static delay(milliseconds, callback) {
+		setTimeout(callback, milliseconds);
 	}
 
 	static trimToTwoDecimalPoints(number) {
@@ -442,16 +442,16 @@ class Utilities {
 		return ~~(Math.pow(10, fixed) * number) / Math.pow(10, fixed);
 	}
 
-	static pause(miliseconds) {
+	static pause(milliseconds) {
 		const start = Date.now();
 		let now = start;
-		while (now - start < miliseconds) {
+		while (now - start < milliseconds) {
 			now = Date.now();
 		}
 	}
 
-	static wait(timeout) {
-		return new Promise(resolve => setTimeout(resolve, timeout));
+	static waitFor(milliseconds) {
+		return new Promise(resolve => setTimeout(resolve, milliseconds));
 	}
 
 	static generateToken() {
@@ -483,11 +483,11 @@ Utilities.generateToken(); // 'DyvlJ_mhQ8X'
 
 Utilities.pause(2000); // Stop the execution of JavaScript for the specified time
 
-// wait() example:
-Utilities.wait(5000).then(() => doSomething());
+// waitFor() example:
+Utilities.waitFor(5000).then(() => doSomething());
 
 // or even...
-await Utilities.wait(5000);
+await Utilities.waitFor(5000);
 doSomething();
 
 ```
