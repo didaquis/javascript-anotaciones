@@ -31,6 +31,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [ECMAScript modules vs CommonJS modules on Node.js](#ecmascript-modules-vs-commonjs-modules-on-nodejs)
 - [unhandledRejection on Node.js](#unhandledrejection-on-nodejs)
 - [Switch vs mapper](#switch-vs-mapper)
+- [API Intl](#api-intl)
 
 
 ----------------------------------------------------------
@@ -1706,6 +1707,48 @@ function getPriceOfDrink(drink) {
 }
 
 getPriceOfDrink('coke'); // 2.3
+```
+
+----------------------------------------------------------
+
+## API Intl
+
+Esta API provee comparación de cadenas y formato de números, fechas y tiempos con sensibilidad al lenguaje.
+
+* Intl.ListFormat
+```javascript
+const fruits = ['banana', 'apple', 'watermelon', 'orange'];
+
+new Intl.ListFormat('en', { style: 'short', type: 'conjunction' }).format(fruits); // 'banana, apple, watermelon, & orange'
+
+new Intl.ListFormat('en', { style: 'long', type: 'conjunction' }).format(fruits); // 'banana, apple, watermelon, and orange'
+
+new Intl.ListFormat('en', { type: 'disjunction' }).format(fruits); // 'banana, apple, watermelon, or orange'
+```
+
+* Intl.NumberFormat
+```javascript
+const number = 123456.789;
+
+new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(number); // '123.456,79 €'
+```
+
+* Intl.DateTimeFormat
+```javascript
+const date = new Date(Date.UTC(2020, 11, 20, 3, 23, 16));
+
+new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long' }).format(date); // 'Sunday, 20 December 2020 at 04:23:16 CET'
+```
+
+* Intl.RelativeTimeFormat
+```javascript
+new Intl.RelativeTimeFormat('es', { numeric: 'auto' }).format(2, 'day'); // 'pasado mañana'
+
+new Intl.RelativeTimeFormat('es', { numeric: 'always' }).format(2, 'day'); // 'dentro de 2 días'
+
+new Intl.RelativeTimeFormat('es', { numeric: 'auto' }).format(-1, 'day'); // 'ayer'
+
+new Intl.RelativeTimeFormat('en', { numeric: 'auto' }).format(-2, 'hour'); // '2 hours ago'
 ```
 
 ----------------------------------------------------------
