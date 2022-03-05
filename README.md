@@ -32,6 +32,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [unhandledRejection on Node.js](#unhandledrejection-on-nodejs)
 - [Switch vs mapper](#switch-vs-mapper)
 - [API Intl](#api-intl)
+- [Navigator Interface](#navigator-interface)
 
 
 ----------------------------------------------------------
@@ -1794,4 +1795,31 @@ new Intl.RelativeTimeFormat('es', { numeric: 'auto' }).format(-1, 'day'); // 'ay
 new Intl.RelativeTimeFormat('en', { numeric: 'auto' }).format(-2, 'hour'); // '2 hours ago'
 ```
 
+----------------------------------------------------------
+
+## Navigator Interface
+
+* Navigator.sendBeacon()
+
+Este método permite hacer una llamada HTTP asíncrona de tipo POST. Esta especialmente diseñado para enviar datos analíticos al servidor.
+```js
+function analytics(eventCategory, eventValue) {
+	// eventCategory examples: form, click, navigation, error
+	// eventValue exampels: ... whatever you want
+	if (!navigator.sendBeacon) {
+		return;
+	};
+
+	const dataToSend = new FormData();
+	dataToSend.append('eventCategory', eventCategory);
+	dataToSend.append('eventValue', eventValue);
+	dataToSend.append('location', window.location.toString());
+
+	const URL = 'https://example.com/analytics';
+	navigator.sendBeacon(URL, dataToSend);
+}
+
+analytics('form', 'saveNewUserData');
+analytics('click', 'adBanner');
+```
 ----------------------------------------------------------
