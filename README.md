@@ -420,7 +420,7 @@ console.log( car.getCarInfo() ); // {brand: "Ford", model: "Fiesta", color: "pin
 * Métodos estáticos (nos permite usar esos métodos sin generar la instancia de la clase):
 ```javascript
 class Utilities {
-	static generateRandomInteger() {
+	static getRandomInteger() {
 		// Esto es un método estático. 
 		// Permite ser llamado sin necesidad de instanciar la clase.
 		return Math.floor(Math.random() * 11); // retorna número entero aleatorio entre 0 y 10
@@ -441,6 +441,11 @@ class Utilities {
 	static trimToTwoDecimalPoints(number) {
 		const fixed = 2;
 		return ~~(Math.pow(10, fixed) * number) / Math.pow(10, fixed);
+	}
+
+	static getRandomPriceBetweenRange(min, max) {
+		const randomNumber = Math.random() * (max - min) + min;
+		return Number(randomNumber.toFixed(2));
 	}
 
 	static pause(milliseconds) {
@@ -469,7 +474,7 @@ class Utilities {
 	}
 }
 
-let num = Utilities.generateRandomInteger(); // Llamamos directamente al método estático
+let num = Utilities.getRandomInteger(); // Llamamos directamente al método estático
 console.log(num); // 2
 
 console.log(Utilities.coinToss()); // true | false
