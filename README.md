@@ -1102,6 +1102,36 @@ router.get('/foo', controllerFactory(injector));
 */
 ```
 
+Otras maneras de generar curry functions: 
+
+```js
+/*
+Otras maneras de generar curry functions.
+
+Imagina que tienes una función llamada `foo` que recibe unos argumentos de una librería (por ejemplo, un middleware de Express o Vue-Router) externa.
+
+En la función `foo` quieres inyectar algunas dependencias, pero no puedes alterar la librería externa. 
+
+Una solución a este caso podría consistir en crear una función "inyectora" que a su vez retorne la función que va a usar la librería externa. La función inyectora sería la encargada también de inyectar todo aquello que sea necesario para la función `foo`
+*/
+
+const inject = (fn) => {
+    const dataToInject = { // también podrías recibir esto como parámetro.
+      someMethod: () => 'An injected method has been called'
+    }
+    return (...args) => fn(...args, dataToInject);
+}
+
+const foo = (value, dataToInject) => {
+  console.log(value);
+  console.log(dataToInject.someMethod().toUpperCase())
+}
+
+const fooWithInjection = inject(foo);
+
+fooWithInjection('someValueFromExternalLibrary'); // la librería de terceros llamaría a nuestra función, pasándole los argumentos que correspondan. 
+// La función `foo` recibe estos argumentos y además los inyectados.
+```
 
 ----------------------------------------------------------
 ## Proxies:
