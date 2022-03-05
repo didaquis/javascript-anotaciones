@@ -443,6 +443,14 @@ class Utilities {
 		return ~~(Math.pow(10, fixed) * number) / Math.pow(10, fixed);
 	}
 
+	/**
+	 * Get a random float between the min and max parameters
+	 *  @example
+	 *      getRandomPriceBetweenRange(6, 7); // 6.98
+	 * @param {number} min
+	 * @param {number} max
+	 * @returns {number}
+	 */
 	static getRandomPriceBetweenRange(min, max) {
 		const randomNumber = Math.random() * (max - min) + min;
 		return Number(randomNumber.toFixed(2));
