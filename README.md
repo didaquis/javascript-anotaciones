@@ -4,6 +4,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 
 ## Tabla de Contenido
 - [Versiones de JavaScript](#versiones-de-javascript)
+- [Tipos de datos](#tipos-de-datos)
 - [Declaración de variables](#declaracion-de-variables)
 - [Operadores](#operadores)
 - [Condicionales](#condicionales)
@@ -45,6 +46,15 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 
 ### **Compatibilidades con navegadores (exceptuando IE11)**  
 * ES2017 está totalmente soportado en todos los navegadores principales de escritorio y móvil
+
+----------------------------------------------------------
+## Tipos de datos:  
+
+Hay dos conjunto de tipos en JavaScript: 
+* Los tipos primitivos: `null` (aunque en realidad es un objeto especial), `undefined`, `boolean`, `number` (incluyendo `NaN`), `string`, `symbol` y `bigint`
+* Los tipos objeto: `Object`, `Array`, `Map`, `Set`, `Date`, `Error`, `Promise`, ...
+
+![js_data_types](./assets/js_data_types.png) 
 
 ----------------------------------------------------------
 ## Declaración de variables:  
