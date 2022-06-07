@@ -1795,6 +1795,58 @@ new Intl.RelativeTimeFormat('es', { numeric: 'auto' }).format(-1, 'day'); // 'ay
 new Intl.RelativeTimeFormat('en', { numeric: 'auto' }).format(-2, 'hour'); // '2 hours ago'
 ```
 
+* Intl.RelativeTimeFormat. Otro ejemplo muy útil:
+```javascript
+const DATE_UNITS = {
+  day: 86400,
+  hour: 3600,
+  minute: 60,
+  second: 1
+};
+
+const getSecondsDiff = (timestamp) => (Date.now() - timestamp) / 1000;
+
+const getUnitAndValueDate = (secondsElapsed) => {
+  for (const [unit, secondsInUnit] of Object.entries(DATE_UNITS)) {
+    if (secondsElapsed >= secondsInUnit || unit === "second") {
+      const value = Math.floor(secondsElapsed / secondsInUnit) * -1
+      return { value, unit }
+    }
+  }
+};
+
+const getTimeAgo = (timestamp, locale = 'en-UK') => {
+  const rtf = new Intl.RelativeTimeFormat(locale, {
+    numeric: 'auto',
+    style: 'long',
+  });
+
+  const secondsElapsed = getSecondsDiff(timestamp);
+
+  const { value, unit } = getUnitAndValueDate(secondsElapsed) || {};
+
+  if (value === undefined || unit === undefined) {
+    throw new RangeError('Invalid value at getTimeAgo function');
+  }
+
+  return rtf.format(value, unit);
+};
+
+
+// Algunos ejemplos de uso:
+
+const threeHoursAgoDate = Date.now() - (3 * 60 * 60 * 1000)
+console.log(getTimeAgo(threeHoursAgoDate)) // '3 hours ago'
+
+const yesterdayDate = Date.now() - (1 * 24 * 60 * 60 * 1000)
+console.log(getTimeAgo(yesterdayDate)) // 'yesterday'
+
+const twoDaysAgoDate = Date.now() - (2 * 24 * 60 * 60 * 1000)
+console.log(getTimeAgo(twoDaysAgoDate)) // '2 days ago'
+
+console.log(getTimeAgo(Date.now())) // now
+```
+
 ----------------------------------------------------------
 
 ## Navigator Interface
