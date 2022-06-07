@@ -1805,7 +1805,7 @@ Este método permite hacer una llamada HTTP asíncrona de tipo POST. Esta especi
 ```js
 function analytics(eventCategory, eventValue) {
 	// eventCategory examples: form, click, navigation, error
-	// eventValue exampels: ... whatever you want
+	// eventValue examples: ... whatever you want
 	if (!navigator.sendBeacon) {
 		return;
 	};
