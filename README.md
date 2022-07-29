@@ -1876,6 +1876,8 @@ function analytics(eventCategory, eventValue) {
 	dataToSend.append('eventCategory', eventCategory);
 	dataToSend.append('eventValue', eventValue);
 	dataToSend.append('location', window.location.toString());
+	dataToSend.append('pathname', window.location.pathname);
+	dataToSend.append('datetime', new Date().toISOString());
 
 	const URL = 'https://example.com/analytics';
 	navigator.sendBeacon(URL, dataToSend);
