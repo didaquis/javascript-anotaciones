@@ -1866,18 +1866,18 @@ console.log(getTimeAgo(Date.now())) // now
 Este método permite hacer una llamada HTTP asíncrona de tipo POST. Esta especialmente diseñado para enviar datos analíticos al servidor.
 ```js
 function analytics(eventCategory, eventValue) {
-	// eventCategory examples: form, click, navigation, error
-	// eventValue examples: ... whatever you want
+	// eventCategory examples: 'form', 'click', 'navigation', 'error', 'filter', 'search' ...
+	// eventValue examples: 'register form', 'on button CTA', 'page /about', 'password validation', ... 
 	if (!navigator.sendBeacon) {
 		return;
 	};
 
 	const dataToSend = new FormData();
-	dataToSend.append('eventCategory', eventCategory);
-	dataToSend.append('eventValue', eventValue);
+	dataToSend.append('datetime', new Date().toISOString());
 	dataToSend.append('location', window.location.toString());
 	dataToSend.append('pathname', window.location.pathname);
-	dataToSend.append('datetime', new Date().toISOString());
+	dataToSend.append('eventCategory', eventCategory);
+	dataToSend.append('eventValue', eventValue);
 
 	const URL = 'https://example.com/analytics';
 	navigator.sendBeacon(URL, dataToSend);
