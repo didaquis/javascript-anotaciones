@@ -480,15 +480,33 @@ class Utilities {
 	}
 
 	static generateToken() {
-		const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-';
-		let rand, i;
+		const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#*'; // Don't modify the length
+		let rand;
+		let index;
 		let bits = 64;
 		let result = '';
 		while (bits > 0) {
 			rand = Math.floor(Math.random() * 0x100000000); // 32-bit integer
 			// base 64 means 6 bits per character, so we use the top 30 bits from rand to give 30/6=5 characters.
-			for (i = 26; i > 0 && bits > 0; i -= 6, bits -= 6) result += chars[0x3F & (rand >>> i)];
+			for (index = 26; index > 0 && bits > 0; index -= 6, bits -= 6) {
+				result += chars[0x3F & (rand >>> index)];
+			}
 		}
+
+		return result;
+	}
+
+	static randomString() {
+		const length = 16;
+		const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		const charactersLength = characters.length;
+
+		let result = '';
+
+		while (result.length < length) {
+			result += characters.charAt(Math.floor(Math.random() * charactersLength));
+		}
+
 		return result;
 	}
 }
@@ -504,7 +522,7 @@ Utilities.delay(3000, function () {
 	return console.log('delayed output');
 }); // 'delayed output', tres segundos después
 
-Utilities.generateToken(); // 'DyvlJ_mhQ8X'
+Utilities.generateToken(); // 'DyvlJ*mhQ8X'
 
 Utilities.pause(2000); // Stop the execution of JavaScript for the specified time
 
