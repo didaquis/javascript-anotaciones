@@ -45,7 +45,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
  [https://node.green](https://node.green)
 
 ### **Compatibilidades con navegadores (exceptuando IE11)**  
-* ES2017 está totalmente soportado en todos los navegadores principales de escritorio y móvil
+* En junio de 2021, ES2017 está totalmente soportado en todos los navegadores principales de escritorio y móvil
 
 ----------------------------------------------------------
 ## Tipos de datos:  
