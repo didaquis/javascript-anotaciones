@@ -120,8 +120,6 @@ if (!!foo) { // 'Result is false' Dado que el valor de foo es null.
 
 * Nullish coalescing operator (??):
 ```javascript
-// Node.js 14 required (ES2020)
-
 0 ?? 'default' // 0
 '' ?? 'default' // ''
 false ?? 'default' // false
@@ -134,7 +132,6 @@ null ?? undefined // undefined
 
 * Optional chaining operator (?.):
 ```javascript
-// Node.js 14 required (ES2020)
 const object = { id: 123, names: { first: 'Alice', last: 'Smith' }};
 const firstName = object?.names?.first; // 'Alice'
 const home = object?.address?.home; // undefined
@@ -584,10 +581,8 @@ console.log(square.getInfo()); // I am a cheeky square!
 
 * Ejemplo de clase en ES2019:
 ```javascript
-// Node.js 12.4 required
-
 class MyES2019Class {
-	// ya no es necesario el constructor para declarar las propiedades públicas (pero puedes usarlo si lo necesitas).
+	// no es necesario el constructor para declarar las propiedades públicas (pero puedes usarlo si lo necesitas).
 
 	x = 1; // public property
 
@@ -1096,7 +1091,7 @@ myFunction('terricola'); // 'saludos terricola'
 // Aquí se ha ejecutado la función que se había retornado previamente, y el argumento 'terricola' se asignó a la variable bar
 ```
 
-Veamos un ejemplo de uso más realista (inyectar dependencias en un controllador de Express):
+Veamos un ejemplo de uso más realista (inyectar dependencias en un controlador de Express):
 ```js
 const { Router } = require('express');
 const router = Router();
