@@ -871,7 +871,7 @@ text = text.split("potato").join("cheese");
 ----------------------------------------------------------
 ## Regular expressions:
 
-* Uso de: _regexObj.search_ (retorna un boolean si encuentra una coincidencia en el string dado)
+* Uso de: _regexObj.test_ (retorna un boolean que indica si se encuentra una coincidencia en el string dado)
 
 ```javascript
 var str = "The best things in life are free";
@@ -1123,7 +1123,7 @@ router.get('/foo', controllerFactory(injector));
 
 
 /*
-	Otra manera de inyectar servicios a un controllador de Express sin usar una curry function sería mediante un middleware que los añadiera al objeto "request".
+	Otra manera de inyectar servicios a un controlador de Express sin usar una curry function sería mediante un middleware que los añadiera al objeto "request".
 */
 ```
 
