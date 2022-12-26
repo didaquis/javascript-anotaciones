@@ -8,6 +8,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Declaración de variables](#declaracion-de-variables)
 - [Operadores](#operadores)
 - [Condicionales](#condicionales)
+- [Continue, break y label](#continue-break-y-label)
 - [Funciones, parámetros y argumentos](#funciones-parámetros-y-argumentos)
 - [Clases en ES6](#clases-en-es6)
 - [Clases en ES2019](#clases-en-es2019)
@@ -165,6 +166,86 @@ const criteria = ['apple', 'strawberry', 'cranberries'];
 if (criteria.includes(fruit)) {
 	// true
 }
+```
+
+----------------------------------------------------------
+## Continue, break y label:
+
+El uso de _continue_, _break_ y _label_ es muy interesante y puede ser útil en algunos casos.  
+De todas formas, si estás haciendo uso de _labels_ quizás debas plantearte que algunas veces puede ser más legible separar el código en funciones, lanzar una excepción o cualquier otra alternativa antes del uso de las mismas.
+
+* Uso de _continue_:
+```js
+let text = '';
+
+for (let i = 0; i < 5; i++) {
+	if (i === 3) {
+		continue; // Skip an iteration of the loop
+	}
+	text = text + i;
+}
+
+console.log(text); // '0124'
+```
+
+* Uso de _break_:
+```js
+let text = '';
+
+for (let i = 0; i < 5; i++) {
+	if (i === 3) {
+		break; // Stop the loop
+	}
+	text = text + i;
+}
+
+console.log(text); // '012'
+```
+
+
+* Uso de _continue_ y _label_:
+```js
+const data = [
+  ['cat', 'lion'],
+  ['mouse', 'cat', 'tiger'],
+  ['frog', 'fish', 'cat'],
+];
+
+const valuesBeforeCat = [];
+
+// "outerLoop" is a label to identify the first loop
+outerLoop: for (let i = 0; i < data.length; i++) {
+   for (let j = 0; j < data[i].length; j++) {
+      if (data[i][j] === 'cat') {
+        continue outerLoop; // we force a "continue" on the outer loop!
+      }
+     
+     valuesBeforeCat.push(data[i][j]);
+   }
+}
+
+console.log(valuesBeforeCat); // [ 'mouse', 'frog', 'fish' ]
+```
+
+* Uso de _break_ y _label_:
+```js
+let text = '';
+
+outerLabel: { // "outerLabel" is the name of a label to identify a code block
+	text += 'a';
+	
+	for (let i = 0; i < 5; i++) {
+		if (i === 3) {
+			break outerLabel; // we force a break of a code block identified by label "outerLabel"
+		}
+		
+		text += i;
+	}
+	
+	text += 'z'; // this line is not executed!
+}
+
+console.log(text); // 'a012'
 ```
 
 ----------------------------------------------------------
