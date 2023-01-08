@@ -1880,6 +1880,7 @@ new Intl.ListFormat('en', { type: 'disjunction' }).format(fruits); // 'banana, a
 const number = 123456.789;
 
 new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(number); // '123.456,79 €'
+new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(number); // '123.457 €'
 ```
 
 * Intl.DateTimeFormat
