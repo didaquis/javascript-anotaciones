@@ -11,7 +11,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Continue, break y label](#continue-break-y-label)
 - [Funciones, parámetros y argumentos](#funciones-parámetros-y-argumentos)
 - [Clases en ES6](#clases-en-es6)
-- [Clases en ES2019](#clases-en-es2019)
+- [Clases en ES2022](#clases-en-es2022)
 - [Singleton (ES6 clase)](#singleton-es6-clase)
 - [Tratamiento de arrays](#tratamiento-de-arrays)
 - [Tratamiento de strings](#tratamiento-de-strings)
@@ -658,11 +658,11 @@ console.log(square.getInfo()); // I am a cheeky square!
 ```
 
 ----------------------------------------------------------
-## Clases en ES2019
+## Clases en ES2022
 
-* Ejemplo de clase en ES2019:
+* Ejemplo de clase en ES2022:
 ```javascript
-class MyES2019Class {
+class MyES2022Class {
 	// no es necesario el constructor para declarar las propiedades públicas (pero puedes usarlo si lo necesitas).
 
 	x = 1; // public property
@@ -681,7 +681,7 @@ class MyES2019Class {
 
 }
 
-let foo = new MyES2019Class();
+let foo = new MyES2022Class();
 
 foo.incB(); // runs OK
 foo.#counter = 7; // error - private property cannot be modified outside class
