@@ -904,6 +904,27 @@ const totalOfTrues = arrayOfBooleans.reduce( function(accumulator, arrayElement)
 console.log(totalOfTrues); // 3
 ```
 
+* _Array.push_ vs _Array.push.apply_
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const someNumbers = [6, 7];
+const moreNumbers = [8, 9];
+
+numbers.push(someNumbers);
+
+/* Al utilizar "apply", el primer parámetro será considerado el objeto "this", el segundo parámetro debe ser un array */
+/* Al combinarlo con push conseguimos aplicar un push por cada uno de los elementos del array "moreNumbers" */
+numbers.push.apply(numbers, moreNumbers);
+
+console.log(numbers); // [ 1, 2, 3, 4, 5, [ 6, 7 ], 8, 9 ]
+
+const extraNumbers = [10, 11];
+/* Sin embargo, es más sencillo hacer esto */
+numbers.push(...extraNumbers);
+
+console.log(numbers); // [ 1, 2, 3, 4, 5, [ 6, 7 ], 8, 9, 10, 11 ]
+```
+
 ----------------------------------------------------------
 ## Tratamiento de strings:  
 
