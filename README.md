@@ -1068,13 +1068,9 @@ const obj = {
    active: true
 }
 
-for (let key in obj){
-	if(obj.hasOwnProperty(key)){
-		console.log(`${key} : ${obj[key]}`) // "name : gowtham" En la segunda iteración.
-	}
+for (const key in obj){
+	console.log(`${key} : ${obj[key]}`) // "name : gowtham" En la segunda iteración.
 }
-// Nota: se usa "hasOwnProperty()" para garantizar que iteramos solo las propiedades del objeto, ya que un "for in" también podría iterar sobre propiedades anidadas del prototype
-
 
 // Otra opción!
 Object.keys(obj).forEach( key => {
@@ -1086,7 +1082,6 @@ Object.keys(obj).forEach( key => {
 Object.values(obj).forEach( value => {
 	console.log(value);
 });
-
 
 // Esto incluye las propiedades non-enumerables
 Object.getOwnPropertyNames(obj).forEach( key => {
