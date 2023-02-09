@@ -1133,6 +1133,52 @@ arr.propertyIsEnumerable('length'); // false
 Object.getOwnPropertyNames(arr); // [ '0', '1', 'length' ]
 ```
 
+* Utilizar _Object.defineProperty_:
+
+Este método permite crear o sobreescribir una propiedad de un objeto. Al utilizarlo, las propiedades son por defecto no enumerables y no editables, pero ambas opciones pueden ser configuradas. 
+```javascript
+
+const createUser = (name) => {
+  let user = {
+    name: name
+  }
+
+  Object.defineProperty(user, 'id', {
+    value: '1234',
+    enumerable: true,
+    writable: false // false is the default value, but define it here is more explicit
+  });
+  
+  Object.defineProperty(user, 'privateValue', {
+    enumerable: false,
+    set: function () {
+        throw new Error('Edit this property is not allowed');
+    },
+    get: function () {
+        return '9857043';
+    },
+  });
+  
+  return user;
+};
+
+const john = createUser('John Doe');
+
+for(const prop in john) {
+  // the prop "privateValue" should not be iterated!
+  console.log(john[prop])
+}
+
+john.privateValue; // '9857043' // you can access to the value directly
+
+
+john.id = '67899'; // This is not working and not throws any error!!! It would throw in strict mode
+
+john.privateValue = '67899'; // This throw our custom error
+
+
+```
+
 ----------------------------------------------------------
 ## Namespaces:
 
@@ -1313,7 +1359,8 @@ let product;
 
         get: function () {
             return _price;
-        }
+        },
+		enumerable: true
     });
 })();
 
