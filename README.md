@@ -1087,6 +1087,11 @@ Object.values(obj).forEach( value => {
 Object.getOwnPropertyNames(obj).forEach( key => {
 	console.log(`${key}:${obj[key]}`);
 })
+
+// esto solo itera las propiedades que sean "enumerables" y "non-inherit"
+for (const [key, value] of Object.entries(obj)) {
+  console.log(`${key}: ${value}`);
+}
 ```
 
 * Crea un objeto literal a partir de los parámetros de una URL:
@@ -1096,6 +1101,37 @@ Object.getOwnPropertyNames(obj).forEach( key => {
 Object.fromEntries([...new URL(location).searchParams]); // {foo: "foo", bar: "bar"}
 ```
 
+* Comprobar si un objeto tiene una determinada propiedad. 
+
+Las propiedades de los objetos en Javascript son propiedades enumerables y no enumerables. Las propiedades de los objetos nativos de Javascript están definidas como no enumerables. Sin embargo, cuando nosotros añadimos o definimos una propiedad a un objeto esta propiedad se crea de manera enumerable. 
+
+Las propiedades también son heredadas o no heredadas. Las propiedades heredadas son aquellas que provienen del Prototype (por ejemplo: `length`, `toString`), mientras que las no heredadas son propiedades que hemos definido nosotros. 
+```javascript
+const obj = {
+   id:1,
+   name: "gowtham",
+   active: true
+}
+
+// Object.hasOwn no retorna las propiedades "inherited"
+Object.hasOwn(obj, 'id'); // true
+Object.hasOwn(obj, 'toString'); // false
+
+// el operador "in" si retorna las propiedades "inherited"
+'toString' in obj; // true
+
+
+// Object.hasOwn también retorna las propiedades "non-enumerables".
+const arr = new Array("secoya", "pino");
+
+Object.hasOwn(arr, 'length'); // true
+
+// una manera de comprobar si la propiedad es "enumerable"
+arr.propertyIsEnumerable('length'); // false
+
+// Esto retorna todas las propiedades enumerables y non-enumerables:
+Object.getOwnPropertyNames(arr); // [ '0', '1', 'length' ]
+```
 
 ----------------------------------------------------------
 ## Namespaces:
