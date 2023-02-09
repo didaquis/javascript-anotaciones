@@ -53,8 +53,13 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 ## Tipos de datos:  
 
 Hay dos conjunto de tipos en JavaScript: 
-* Los tipos primitivos: `null` (aunque en realidad es un objeto especial), `undefined`, `boolean`, `number` (incluyendo `NaN`), `string`, `symbol` y `bigint`
+* Los tipos primitivos: `null`, `undefined`, `boolean`, `number` (incluyendo `NaN`), `string`, `symbol` y `bigint`.
 * Los tipos objeto: `Object`, `Array`, `Map`, `Set`, `Date`, `Error`, `Promise`, ...
+
+Los tipos primitivos se pasan por valor. Pero los tipos objeto se pasan por referencia.  
+
+**Nota**: Pese a que `typeof null` retorne `object`, `null` es un tipo primitivo. Esto es debido a un error que se cometió en la creación de JavaScript. 
+
 
 ![js_data_types](./assets/js_data_types.png) 
 
