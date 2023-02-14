@@ -54,7 +54,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 
 Hay dos conjunto de tipos en JavaScript: 
 * Los tipos primitivos: `null`, `undefined`, `boolean`, `number` (incluyendo `NaN`), `string`, `symbol` y `bigint`.
-* Los tipos objeto: `Object`, `Array`, `Map`, `Set`, `Date`, `Error`, `Promise`, ...
+* Los tipos objeto: `Object`, `Array`, `Map`, `Set`, `Date`, `Error`, `Promise`, `Function`, ...
 
 Los tipos primitivos se pasan por valor. Pero los tipos objeto se pasan por referencia.  
 
