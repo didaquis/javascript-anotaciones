@@ -35,6 +35,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [Switch vs mapper](#switch-vs-mapper)
 - [API Intl](#api-intl)
 - [Navigator Interface](#navigator-interface)
+- [Debounce](#debounce)
 
 
 ----------------------------------------------------------
@@ -2085,5 +2086,34 @@ function analytics(eventCategory, eventValue) {
 
 analytics('form', 'saveNewUserData');
 analytics('click', 'adBanner');
+```
+----------------------------------------------------------
+
+## Debounce
+
+* El _debounce_ es una estrategia que nos permite mejorar el rendimiento esperando a que transcurra un cierto tiempo antes de lanzar un evento.
+
+```js
+const debounce = (callback, wait = 300) => {
+	let timeoutId = null;
+
+	return (...args) => {
+		window.clearTimeout(timeoutId);
+
+		timeoutId = window.setTimeout(() => {
+		callback.apply(null, args);
+		}, wait);
+	};
+};
+
+
+// Ejemplo de utilización:
+const delay = 250;
+
+const handleMouseMove = debounce((event) => {
+	// Do stuff with the event!
+}, delay);
+
+window.addEventListener('mousemove', handleMouseMove);
 ```
 ----------------------------------------------------------
