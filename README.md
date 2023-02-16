@@ -2101,7 +2101,7 @@ const debounce = (callback, wait = 300) => {
 		window.clearTimeout(timeoutId);
 
 		timeoutId = window.setTimeout(() => {
-		callback.apply(null, args);
+			callback.apply(this, args);
 		}, wait);
 	};
 };
