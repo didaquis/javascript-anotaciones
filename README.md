@@ -2094,15 +2094,15 @@ analytics('click', 'adBanner');
 * El _debounce_ es una estrategia que nos permite mejorar el rendimiento esperando a que transcurra un cierto tiempo antes de lanzar un evento.
 
 ```js
-const debounce = (callback, wait = 300) => {
+const debounce = (callback, delay = 300) => {
 	let timeoutId = null;
 
 	return (...args) => {
-		window.clearTimeout(timeoutId);
+		clearTimeout(timeoutId);
 
-		timeoutId = window.setTimeout(() => {
+		timeoutId = setTimeout(() => {
 			callback.apply(this, args);
-		}, wait);
+		}, delay);
 	};
 };
 
