@@ -1043,12 +1043,18 @@ console.log(arrayFromObject.length); // 2
 console.log(arrayFromObject[1]); // 'foo'
 ```
 
-* Clonar un objeto:
+* Clonar un objeto de manera profunda es una tarea realmente compleja en JavaScript. 
+Te muestro diferentes métodos con sus respectivos trade-offs:
 ```javascript
+/**
+ * Esta función te permite hace clonaciones profundas gracias a la recursividad. 
+ * Este método si te clonara funciones dentro de los objetos, pero no funcionará con Set, Map, Null, RegExp, Date, Array, ArrayBuffer, etc...
+ * Por tanto, no es un método muy bueno para clonar objetos ☹️
+ */
 function deepClone(originalObject) {
 	const clonedObject = {};
-	for (let key in originalObject) {
-		if (typeof (originalObject[key]) != 'object') {
+	for (const key in originalObject) {
+		if (typeof (originalObject[key]) !== 'object') {
 			clonedObject[key] = originalObject[key];
 		} else {
 			clonedObject[key] = deepClone(originalObject[key]);
@@ -1058,11 +1064,59 @@ function deepClone(originalObject) {
 }
 const newObject = deepClone(originalObject);
 
+/**
+ * Este método tampoco es válido, ya que fallará silenciosamente si el objeto a clonar tiene funciones. ☹️
+ * Tampoco funcionará con Set, Map, RegExp, Date o ArrayBuffer
+ */
+const problematicObject = {
+  set: new Set([1, 3, 3]),
+  map: new Map([[1, 2]]),
+  regex: /foo/,
+  deep: { array: [ new File(someBlobData, 'file.txt') ] },
+  error: new Error('Hello!'),
+  aFunction: () => { console.log('') }
+}
 
-// método alternativo:
+const veryProblematicCopy = JSON.parse(JSON.stringify(problematicObject)
+
+/**
+ * Este método tampoco es válido, ya que no creará la copia correctamente si, por ejemplo, una de las propiedades contiene un objeto de tipo Date (objeto original y su copia compartirán el objeto Date, no se hace una copia). 
+ * El mismo problema ocurrirá si una de las propiedades del objeto es un array! ☹️
+ * Tendrás problemas similares con: Object.create() ☹️
+ */
 const obj = { a: 1 };
 const copy = Object.assign({}, obj);
 console.log(copy); // { a: 1 }
+
+
+/**
+ * Esto es uno de los métodos más modernos para clonar objetos (Node 17 en adelante, tiene soporte en todos los browsers modernos).
+ * Sin embargo, sigue siendo problemático en algunos objetos que contienen: funciones (structuredClone lanzará un error), Error (no soporta todos los tipos de error, pero si los más comunes), elementos el DOM, getters y setters.
+ * Además el prototype de los objetos clonados se pierde.
+ * Sin embargo, si funciona bien con: Date, Set, RegExp, Map, Array, etc...
+ */
+const mushrooms1 = {
+  amanita: ["muscaria", "virosa"],
+};
+
+const mushrooms2 = structuredClone(mushrooms1);
+
+
+/**
+ * Finalmente, aquí tienes uno de los métodos más populares y sencillos para resolver el problema
+ * Cuidado, esto cubre la mayoría de los casos, pero no es infalible. En cualquier caso, es probablemente la mejor opción para clonados profundos de objetos
+ */
+// npm i --save lodash.clonedeep // https://www.npmjs.com/package/lodash.clonedeep
+import cloneDeep from 'lodash.clonedeep';
+
+
+/**
+ * Hay muchas otras soluciones, pero todas tiene su contrapartida. 
+ * 
+ * Incluso patros de diseño creacionales como "prototype" o "singleton" podría servir para solucionar este problema:
+ *  - prototype => el propio objeto incluye un método para clonarse de manera específica y controlada.
+ *  - singleton => quizás no necesites un clonado, si no trabajar siempre con el mismo objeto
+ */
 ```
 
 
