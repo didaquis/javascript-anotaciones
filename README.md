@@ -46,9 +46,13 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 ### **Compatibilidades con Node.js**  
  [https://node.green](https://node.green)
 
+### **Compatibilidades con browsers**  
+ [https://kangax.github.io/compat-table](https://kangax.github.io/compat-table/es2016plus/)
+
 ### **Compatibilidades con navegadores (exceptuando IE11)**  
 * En junio de 2021, ES2017 está totalmente soportado en todos los navegadores principales de escritorio y móvil
 * En diciembre de 2022, ES2020 está totalmente soportado en todos los navegadores principales de escritorio y móvil
+* En marzo de 2023, ES2021 está totalmente soportado en todos los navegadores principales de escritorio y móvil
 
 ----------------------------------------------------------
 ## Tipos de datos:  
