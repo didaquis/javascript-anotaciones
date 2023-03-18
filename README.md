@@ -451,7 +451,7 @@ console.log( connection.getSettings() ); // {ip: "192.168.2.11", port: "8080", m
 ----------------------------------------------------------
 ## Clases en ES6
 
-* Ejemplo de clase en ES6:
+* Ejemplo de clase:
 ```javascript
 class Person {
 	constructor(name) {
@@ -459,25 +459,75 @@ class Person {
 		this.name = name;
 	}
 
-	salute() {
+	salute = () => {
 		console.log(`Hello, my name is ${this.name}`);
 	}
 }
 
-let john_doe = new Person("John Doe");
+let john_doe = new Person('John Doe');
 
 john_doe.salute(); // Hello, my name is John Doe
 
 console.log(john_doe instanceof Person); // true
 console.log(john_doe instanceof Object); // true
 
-console.log( typeof john_doe); // object
+console.log(typeof john_doe); // object
 
-console.log( typeof Person); // function !!
-// (Cuidado, podríamos pensar que no retornará "class" pero nos retorna "function")
+console.log(typeof Person); // function !!
+// (Cuidado, podríamos pensar que nos retornará 'class' pero nos retorna 'function')
+```
 
-console.log( typeof Person.prototype.salute); // function !!
-// (Cuidado, podríamos pensar que no retornará "method" pero nos retorna "function")
+
+* Observa el uso del contexto (this) en los diferentes métodos:
+```javascript
+class Person {
+	constructor(name) {
+		this.name = name;
+
+		// La próxima linea es opcional, pero permite que 'this' funcione correctamente dentro del método cuando el método se extrae a una variable.
+		// this.salute = this.salute.bind(this);
+	}
+
+	// Utilizar arrow functions permite el bindeo correcto de 'this' cuando el método se extrae a una variable.
+	greet = () => {
+		console.log(`Hello, my name is ${this.name}`);
+	}
+
+	// Observa que no estoy usando una arrow function aquí:
+	salute() {
+		console.log(`Hello, my name is ${this.name}`);
+	}
+}
+
+let julia = new Person('Julia');
+julia.greet(); // Hello, my name is Julia
+julia.salute(); // Hello, my name is Julia
+
+console.log(typeof Person.prototype.greet); // undefined !!
+// (Cuidado, podríamos pensar que nos retornará 'method' o 'function' pero nos retorna 'undefined')
+
+console.log(typeof Person.prototype.salute); // function !!
+// (Cuidado, podríamos pensar que nos retornará 'method' pero nos retorna 'function')
+
+const greetMethod = julia.greet; // extraigo el método a una variable
+greetMethod(); // Esto funciona correctamente, ya que declaré el método greet usando arrow function, la cual hizo el bindeo de 'this'.
+
+const saluteMethod = julia.salute;
+saluteMethod(); // TypeError: Cannot read properties of undefined (reading 'name')
+// Esto NO funciona porque el método 'salute' no tiene bindeado 'this'
+
+
+// Sin embargo, podrías llegar definirle el contexto en otro momento. 
+const peter = new Person('Peter');
+const salute = peter.salute.bind(peter);
+salute(); // Esto funcion porque le has bindeado el contexto
+
+// incluso podría bindearle otro contexto distinto: 
+const otherObject = {
+	name: 'Mariah'
+}
+const saluteCrossBinded = peter.salute.bind(otherObject);
+saluteCrossBinded(); // 'Hello, my name is Mariah'
 ```
 
 * Ejemplo de Chaining Methods (métodos encadenados):
@@ -489,20 +539,20 @@ class Car {
 		this.color = color;
 	}
 
-	setBrand(brand) {
+	setBrand = (brand) => {
 		this.brand = brand;
 		return this; // Returning this for chaining
 	}
-	setModel(model) {
+	setModel = (model) => {
 		this.model = model;
 		return this; // Returning this for chaining
 	}
-	setColor(color) {
+	setColor = (color) => {
 		this.color = color;
 		return this; // Returning this for chaining
 	}
 
-	getCarInfo() {
+	getCarInfo = () => {
 		return this; // Returning this for chaining
 	}
 }
@@ -596,7 +646,7 @@ class Utilities {
 	}
 }
 
-let num = Utilities.getRandomInteger(); // Llamamos directamente al método estático
+const num = Utilities.getRandomInteger(); // Llamamos directamente al método estático
 console.log(num); // 2
 
 console.log(Utilities.coinToss()); // true | false
