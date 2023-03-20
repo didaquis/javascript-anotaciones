@@ -463,7 +463,7 @@ class Person {
 		this.name = name;
 	}
 
-	salute = () => {
+	salute() {
 		console.log(`Hello, my name is ${this.name}`);
 	}
 }
@@ -543,20 +543,20 @@ class Car {
 		this.color = color;
 	}
 
-	setBrand = (brand) => {
+	setBrand(brand) {
 		this.brand = brand;
 		return this; // Returning this for chaining
 	}
-	setModel = (model) => {
+	setModel(model) {
 		this.model = model;
 		return this; // Returning this for chaining
 	}
-	setColor = (color) => {
+	setColor(color) {
 		this.color = color;
 		return this; // Returning this for chaining
 	}
 
-	getCarInfo = () => {
+	getCarInfo() {
 		return this; // Returning this for chaining
 	}
 }
@@ -735,7 +735,7 @@ class MyES2022Class {
 		this.#counter++;
 	}
 
-	getCounter () {
+	getCounter() {
 		return this.#counter
 	}
 
