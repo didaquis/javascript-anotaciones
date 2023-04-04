@@ -32,6 +32,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [DOM](#dom)
 - [ECMAScript modules vs CommonJS modules on Node.js](#ecmascript-modules-vs-commonjs-modules-on-nodejs)
 - [unhandledRejection on Node.js](#unhandledrejection-on-nodejs)
+- [Fetch](#fetch)
 - [Switch vs mapper](#switch-vs-mapper)
 - [API Intl](#api-intl)
 - [Navigator Interface](#navigator-interface)
@@ -2026,6 +2027,108 @@ process.on('unhandledRejection', (reason, promise) => {
 
 	console.error(error);
 });
+```
+
+----------------------------------------------------------
+
+## Fetch
+
+Fetch está disponible a partir de Node.js 18. Además, tiene soporte para todos los navegadores modernos.
+
+
+Esto es un ejemplo sencillo:
+```javascript
+try {
+	const res = await fetch('https://nodejs.org/api/documentation.json');
+	if (!res.ok) {
+		throw new Error(`Fetch response was not OK: ${response.status} ${response.statusText}`);
+	}
+
+	const data = await res.json();
+	console.log(data);
+} catch(error) {
+	// a network error is encountered or CORS is misconfigured on the server-side
+	console.error(error)
+}
+```
+
+
+Puedes construir objetos de tipo Request y Headers de esta forma:
+```javascript
+async function fetchPOST(url, data = {}) {
+	try {
+		const options = {
+			// Default options are marked with *
+
+			method: 'POST', // *GET, POST, PUT, DELETE, etc.
+			//mode: 'cors', // no-cors, *cors, same-origin
+			//cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+			//credentials: 'same-origin', // include, *same-origin, omit
+			headers: {
+				'Content-Type': 'application/json',
+				// or...
+				// 'Content-Type': 'application/x-www-form-urlencoded',
+				// 'Content-Type': 'multipart/form-data',
+				// 'Content-Type': 'text/plain',
+			},
+			//redirect: 'follow', // manual, *follow, error
+			//referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+			body: JSON.stringify(data), // body data type must match 'Content-Type' header
+		};
+
+		const response = await fetch(url, options);
+
+		const contentType = response.headers.get('content-type');
+
+		if (!contentType || !contentType.includes('application/json')) {
+			throw new TypeError('Fetch response is not a JSON');
+		}
+
+		if (!response.ok) {
+			throw new Error(`Fetch response was not OK: ${response.status} ${response.statusText}`);
+		}
+
+		return await res.json();
+	
+	} catch (error) {
+		// a network error is encountered or CORS is misconfigured on the server-side
+		console.error(error);
+	}
+}
+
+fetchPOST('https://api.example.com', { foo: 'foo' });
+```
+
+
+Puedes construir objetos de tipo Request y Headers de esta forma:
+```javascript
+async function fetchAPI(request) {
+	try {
+		const response = await fetch(request);
+		// ...
+	} catch(error) {
+		// ...
+	}
+}
+
+const myHeaders = new Headers({
+	'Content-Type': 'application/json',
+});
+
+myHeaders.append('X-Custom-Header', 'ProcessThisImmediately');
+
+const params = new URLSearchParams();
+params.append('name', 'John Doe');
+
+const myRequest = new Request(`https://api.example.com/users?${params.toString()}`, {
+	method: 'GET',
+	credentials: 'omit',
+	headers: myHeaders,
+	mode: 'cors',
+	cache: 'no-cache',
+});
+
+fetchAPI(myRequest);
 ```
 
 ----------------------------------------------------------
