@@ -2220,43 +2220,44 @@ new Intl.RelativeTimeFormat('en', { numeric: 'auto' }).format(-2, 'hour'); // '2
 * Intl.RelativeTimeFormat. Otro ejemplo muy útil:
 ```javascript
 const DATE_UNITS = {
-  day: 86400,
-  hour: 3600,
-  minute: 60,
-  second: 1
+	year: 31536000,
+	month: 2592000,
+	day: 86400,
+	hour: 3600,
+	minute: 60,
+	second: 1
 };
 
 const getSecondsDiff = (timestamp) => (Date.now() - timestamp) / 1000;
 
 const getUnitAndValueDate = (secondsElapsed) => {
-  for (const [unit, secondsInUnit] of Object.entries(DATE_UNITS)) {
-    if (secondsElapsed >= secondsInUnit || unit === "second") {
-      const value = Math.floor(secondsElapsed / secondsInUnit) * -1
-      return { value, unit }
-    }
-  }
+	for (const [unit, secondsInUnit] of Object.entries(DATE_UNITS)) {
+		if (secondsElapsed >= secondsInUnit || unit === "second") {
+			const value = Math.floor(secondsElapsed / secondsInUnit) * -1;
+			return { value, unit }
+		}
+	}
 };
 
 const getTimeAgo = (timestamp, locale = 'en-UK') => {
-  const rtf = new Intl.RelativeTimeFormat(locale, {
-    numeric: 'auto',
-    style: 'long',
-  });
+	const rtf = new Intl.RelativeTimeFormat(locale, {
+		numeric: 'auto',
+		style: 'long',
+	});
 
-  const secondsElapsed = getSecondsDiff(timestamp);
+	const secondsElapsed = getSecondsDiff(timestamp);
 
-  const { value, unit } = getUnitAndValueDate(secondsElapsed) || {};
+	const { value, unit } = getUnitAndValueDate(secondsElapsed) || {};
 
-  if (value === undefined || unit === undefined) {
-    throw new RangeError('Invalid value at getTimeAgo function');
-  }
+	if (value === undefined || unit === undefined) {
+		throw new RangeError('Invalid value at getTimeAgo function');
+	}
 
-  return rtf.format(value, unit);
+	return rtf.format(value, unit);
 };
 
 
 // Algunos ejemplos de uso:
-
 const threeHoursAgoDate = Date.now() - (3 * 60 * 60 * 1000)
 console.log(getTimeAgo(threeHoursAgoDate)) // '3 hours ago'
 
@@ -2267,6 +2268,12 @@ const twoDaysAgoDate = Date.now() - (2 * 24 * 60 * 60 * 1000)
 console.log(getTimeAgo(twoDaysAgoDate)) // '2 days ago'
 
 console.log(getTimeAgo(Date.now())) // now
+
+const twoMonthsAgo = Date.now() - (60 * 24 * 60 * 60 * 1000)
+console.log(getTimeAgo(twoMonthsAgo)) // '2 months ago'
+
+const threeYearsAgo = Date.now() - (1095 * 24 * 60 * 60 * 1000)
+console.log(getTimeAgo(threeYearsAgo)) // '3 years ago'
 ```
 
 ----------------------------------------------------------
