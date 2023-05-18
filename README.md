@@ -2178,7 +2178,7 @@ getPriceOfDrink('coke'); // 2.3
 
 ## API Intl
 
-Esta API provee comparación de cadenas y formato de números, fechas y tiempos con sensibilidad al lenguaje.
+Esta API provee un conjunto de métodos para trabajar con cadenas de texto, números, fechas, usos horarios y tiempos con sensibilidad al lenguaje.
 
 * Intl.ListFormat
 ```javascript
@@ -2275,6 +2275,24 @@ console.log(getTimeAgo(twoMonthsAgo)) // '2 months ago'
 const threeYearsAgo = Date.now() - (1095 * 24 * 60 * 60 * 1000)
 console.log(getTimeAgo(threeYearsAgo)) // '3 years ago'
 ```
+
+* Obtener información sobre una determinada región:
+
+```js
+const spanishFromSpainLocale = new Intl.Locale('es-ES');
+
+spanishFromSpainLocale.timeZones; // [ 'Africa/Ceuta', 'Atlantic/Canary', 'Europe/Madrid' ]
+spanishFromSpainLocale.weekInfo; // { firstDay: 1, weekend: [ 6, 7 ], minimalDays: 4 }
+```
+
+* Ver todas las opciones disponibles:
+
+```js
+Intl.supportedValuesOf('currency'); // return the list of supported currencies (EUR, CHF, etc..)
+Intl.supportedValuesOf('timeZone'); // return the list of supported time zones ('Africa/Ceuta', 'Atlantic/Canary', 'Europe/Madrid', etc...)
+Intl.supportedValuesOf('unit'); // return the list of supported units (meter, second, celsius, byte, etc..)
+```
+
 
 ----------------------------------------------------------
 
