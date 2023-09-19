@@ -2053,7 +2053,7 @@ try {
 ```
 
 
-Puedes construir objetos de tipo Request y Headers de esta forma:
+Un ejemplo más completo:
 ```javascript
 async function fetchPOST(url, data = {}) {
 	try {
@@ -2100,7 +2100,7 @@ fetchPOST('https://api.example.com', { foo: 'foo' });
 ```
 
 
-Puedes construir objetos de tipo Request y Headers de esta forma:
+Puedes construir objetos de tipo Headers, URLSearchParams y Request de esta forma:
 ```javascript
 async function fetchAPI(request) {
 	try {
