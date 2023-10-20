@@ -986,6 +986,25 @@ numbers.push(...extraNumbers);
 console.log(numbers); // [ 1, 2, 3, 4, 5, [ 6, 7 ], 8, 9, 10, 11 ]
 ```
 
+* Manera eficiente de partir un array en otros arrays más pequeños. Atención, solo usar con arrays de una dimensión que contenga valores primitivos.
+```javascript
+const splitArrayInChunks = (myArray, chunkSize = 100) => {
+  if (chunkSize <= 0) {
+    throw new Error('The value of chunkSize should be an integer greather than 0');
+  }
+  const results = [];
+
+  const copiedArray = [...myArray];
+  while (copiedArray.length) {
+    results.push(copiedArray.splice(0, chunkSize));
+  }
+
+  return results;
+};
+
+splitArrayInChunks([1, 2, 3, 4, 5], 2); // [[1, 2], [3, 4], [5]]
+```
+
 ----------------------------------------------------------
 ## Tratamiento de strings:  
 
