@@ -140,6 +140,20 @@ null ?? 'default' // 'default'
 undefined ?? 'default' // 'default'
 undefined ?? null // null
 null ?? undefined // undefined
+
+
+// Ejemplo de uso combinado con asignación
+const buildConfig = (options) => {
+	options.duration ??= '44';
+	options.speed ??= '300';
+	options.debug ??= true;
+	options.name ??= null;
+
+	return options;
+};
+
+buildConfig({ duration: '123' }); // { duration: '123', speed: '300', debug: true, name: null }
+buildConfig({debug: false, name: 'foo'}); // { debug: false, name: 'foo', duration: '44', speed: '300' }
 ```
 
 * Optional chaining operator (?.):
