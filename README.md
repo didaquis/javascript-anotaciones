@@ -37,6 +37,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
 - [API Intl](#api-intl)
 - [Navigator Interface](#navigator-interface)
 - [Debounce](#debounce)
+- [Medir el rendimiento de un algoritmo en Node.js](#medir-el-rendimiento-de-un-algoritmo-en-nodejs)
 
 
 ----------------------------------------------------------
@@ -2384,5 +2385,25 @@ const handleMouseMove = debounce((event) => {
 }, delay);
 
 window.addEventListener('mousemove', handleMouseMove);
+```
+----------------------------------------------------------
+
+
+## Medir el rendimiento de un algoritmo en Node.js
+
+Node.js dispone de una API que te permite medir el tiempo que tarda tu código en ejecutarse. El tiempo es medido con alta precisión y no se ve afectado por los ajustes del reloj ya que trabaja con "monotonic timestamps".
+
+* Ejemplo de como medir cuantos milisegundos tarda en ejecutarse un algoritmo:
+```js
+import { performance } from 'node:perf_hooks';
+
+const startTimeToPopulateArray = performance.now();
+
+const arrayLength = 99999;
+const numbersList: number[] = Array.from(Array(arrayLength), (_, index) => index + 1);
+
+const endTimeToPopulateArray = performance.now();
+
+console.log(`Populate array: task completed in ${endTimeToPopulateArray - startTimeToPopulateArray} milliseconds.`);
 ```
 ----------------------------------------------------------
