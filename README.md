@@ -1742,6 +1742,17 @@ JSON.stringify(person, null, '\t'); // Indentación: tabulador
 */
 ```
 
+* JSON.stringify mostrando el resultado ordenado alfabéticamente:
+```javascript
+const example = {
+  b: 'foo',
+  a: 'biz',
+  c: 'bar'
+};
+
+JSON.stringify(example, Object.keys(example).sort()); // '{"a":"biz","b":"foo","c":"bar"}'
+```
+
 * Revisar el código de una función:
 ```javascript
 function someFunction(){
