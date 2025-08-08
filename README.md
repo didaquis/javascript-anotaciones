@@ -49,7 +49,7 @@ Listado personal de anotaciones, trucos, recordatorios, utilidades o ejemplos in
  [https://node.green](https://node.green)
 
 ### **Compatibilidades con browsers**  
- [https://kangax.github.io/compat-table](https://kangax.github.io/compat-table/es2016plus/)
+ [https://compat-table.github.io/compat-table](https://compat-table.github.io/compat-table/es2016plus/)
 
 ### **Compatibilidades con navegadores (exceptuando IE11)**  
 * En junio de 2021, ES2017 está totalmente soportado en todos los navegadores principales de escritorio y móvil
