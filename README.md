@@ -2084,12 +2084,12 @@ Fetch está disponible a partir de Node.js 18. Además, tiene soporte para todos
 Esto es un ejemplo sencillo:
 ```javascript
 try {
-	const res = await fetch('https://nodejs.org/api/documentation.json');
-	if (!res.ok) {
+	const response = await fetch('https://nodejs.org/api/documentation.json');
+	if (!response.ok) {
 		throw new Error(`Fetch response was not OK: ${response.status} ${response.statusText}`);
 	}
 
-	const data = await res.json();
+	const data = await response.json();
 	console.log(data);
 } catch(error) {
 	// a network error is encountered or CORS is misconfigured on the server-side
@@ -2133,7 +2133,7 @@ async function fetchPOST(url, data = {}) {
 			throw new Error(`Fetch response was not OK: ${response.status} ${response.statusText}`);
 		}
 
-		return await res.json();
+		return await response.json();
 	
 	} catch (error) {
 		// a network error is encountered or CORS is misconfigured on the server-side
