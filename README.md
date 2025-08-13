@@ -2118,6 +2118,7 @@ async function fetchPOST(url, data = {}) {
 			},
 			//redirect: 'follow', // manual, *follow, error
 			//referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+			// signal: AbortSignal.timeout(5000)
 			body: JSON.stringify(data), // body data type must match 'Content-Type' header
 		};
 
