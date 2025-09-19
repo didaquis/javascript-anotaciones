@@ -1020,7 +1020,7 @@ const splitArrayInChunks = (myArray, chunkSize = 100) => {
 splitArrayInChunks([1, 2, 3, 4, 5], 2); // [[1, 2], [3, 4], [5]]
 ```
 
-* Generar un _iterator_ para operar con los valores del array
+* Generar un _iterator_ para operar con los valores del array (desde ES2025)
 ```javascript
 const arr = ['F', 'J', 'A', 'V', 'A', 'S'];
 const result = arr.values() // Crea un iterador a partir del array.
