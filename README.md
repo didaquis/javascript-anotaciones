@@ -1020,6 +1020,18 @@ const splitArrayInChunks = (myArray, chunkSize = 100) => {
 splitArrayInChunks([1, 2, 3, 4, 5], 2); // [[1, 2], [3, 4], [5]]
 ```
 
+* Generar un _iterator_ para operar con los valores del array
+```javascript
+const arr = ['F', 'J', 'A', 'V', 'A', 'S'];
+const result = arr.values() // Crea un iterador a partir del array.
+                   .drop(1) // Descarta el primer elemento
+                   .take(3) // Toma los primeros 3 elementos
+                   .map(char => char.toLowerCase()) // Convierte cada carácter a minúscula
+                   .toArray(); // crea un nuevo array con los resultados
+
+console.log(result); // [ 'j', 'a', 'v' ]
+```
+
 ----------------------------------------------------------
 ## Tratamiento de strings:  
 
